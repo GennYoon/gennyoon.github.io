@@ -29,7 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={twMerge("min-h-screen bg-background font-sans antialiased", inter.className)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" storageKey="blog-ui-theme" enableSystem disableTransitionOnChange>
           <Header />
 
           <main className="grid grid-cols-3 md:grid-cols-4 gap-8 w-full max-w-[1400px] pt-28">
