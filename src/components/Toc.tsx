@@ -48,10 +48,7 @@ export const Toc = ({ data }: { data: { depth: number; title: string }[] }) => {
                     {item.children.map((item, index) => {
                       return (
                         <li key={index} className="ml-1.5 py-1">
-                          <a
-                            href={`#${item.link}`}
-                            className="flex gap-2 items-center"
-                          >
+                          <a href={`#${item.link}`} className="flex gap-2 items-center">
                             <ChevronRight size={16} />
                             {item.title}
                           </a>

@@ -10,17 +10,10 @@ const getData = async (category: string) => {
   const files = fs.readdirSync(path.join("src", "posts"));
 
   const _posts = files.reduce<any[]>((acc, filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join("src", "posts", filename),
-    );
+    const markdownWithMeta = fs.readFileSync(path.join("src", "posts", filename));
     const { data: frontMatter } = matter(markdownWithMeta);
 
-    if (
-      frontMatter?.categories?.some(
-        (cate: string) =>
-          cate.toLocaleUpperCase() === category.toLocaleUpperCase(),
-      )
-    ) {
+    if (frontMatter?.categories?.some((cate: string) => cate.toLocaleUpperCase() === category.toLocaleUpperCase())) {
       acc.push({
         frontMatter,
         slug: filename.split(".")[0],
@@ -50,16 +43,12 @@ export default async function CategoryPage({ params }: any) {
             <Link href={"/post/" + post.slug} passHref key={post.slug}>
               <div className="p-4 flex justify-between align-middle gap-2 rounded-lg cursor-pointer">
                 <div className="flex flex-col gap-0.5">
-                  <h3 className="text-xl font-bold">
-                    {post.frontMatter.title}
-                  </h3>
+                  <h3 className="text-xl font-bold">{post.frontMatter.title}</h3>
                   <p className="flex items-center gap-1">
                     <CalendarDays size={20} className="inline-block" />
                     <span>{post.frontMatter.date}</span>
                   </p>
-                  <p className="text-gray-400">
-                    {post.frontMatter.description}
-                  </p>
+                  <p className="text-gray-400">{post.frontMatter.description}</p>
                 </div>
               </div>
             </Link>
@@ -71,14 +60,7 @@ export default async function CategoryPage({ params }: any) {
 }
 
 export const generateStaticParams = async () => {
-  return [
-    { slug: "macos" },
-    { slug: "react" },
-    { slug: "nextjs" },
-    { slug: "nestjs" },
-    { slug: "flutter" },
-    { slug: "terraform" },
-  ];
+  return [{ slug: "macos" }, { slug: "react" }, { slug: "nextjs" }, { slug: "nestjs" }, { slug: "flutter" }, { slug: "terraform" }];
 };
 
 // export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
