@@ -9,9 +9,8 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
-import { Toc } from "@/components/toc";
-import "@/assets/css/atom-one-dark.css";
-import { Pre } from "@/components/pre";
+import { Pre } from "@/components/Pre";
+import { Toc } from "@/components/Toc";
 
 const createToc = (headings: RegExpMatchArray) => {
   return headings.map((heading) => {
@@ -23,7 +22,7 @@ const createToc = (headings: RegExpMatchArray) => {
 const getData = async (title: string) => {
   const markdownWithMeta = fs.readFileSync(
     path.join("src", "posts", `${title}.md`),
-    "utf-8"
+    "utf-8",
   );
 
   const { data: frontMatter, content } = matter(markdownWithMeta);
@@ -63,12 +62,14 @@ export default async function PostPage({ params }: any) {
   const { frontMatter, content, toc } = await getData(params.slug);
 
   return (
-    <section className="py-28">
+    <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
+      <h1 className="text-3xl font-bold">{frontMatter.title}</h1>
+
       {/* <h1>{frontMatter.title}</h1>
       <p>{frontMatter.description}</p>
       <p>{frontMatter.date}</p>
       <p>{frontMatter.tags.join(", ")}</p> */}
-      <div className="prose dark:prose-dark mt-4 w-full max-w-none">
+      <div className="col-span-3 md:col-span-2 prose dark:prose-dark mt-4 w-full max-w-none">
         <MDXRemote
           source={content}
           options={options}
@@ -86,7 +87,7 @@ export const generateStaticParams = async () => {
     .filter((filename) => {
       const markdownWithMeta = fs.readFileSync(
         path.join("src", "posts", `${filename}`),
-        "utf-8"
+        "utf-8",
       );
       const { data } = matter(markdownWithMeta);
       return data.published;
@@ -99,7 +100,7 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const markdownWithMeta = fs.readFileSync(
     path.join("src", "posts", `${params.slug}.md`),
-    "utf-8"
+    "utf-8",
   );
 
   const { data: frontMatter } = matter(markdownWithMeta);

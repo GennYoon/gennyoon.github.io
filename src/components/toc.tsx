@@ -25,7 +25,7 @@ export const Toc = ({ data }: { data: { depth: number; title: string }[] }) => {
               .replace(/ /g, "-")
               .toLowerCase(),
             children: [],
-          })
+          }),
         );
       }
       return path[0].children;
@@ -34,12 +34,12 @@ export const Toc = ({ data }: { data: { depth: number; title: string }[] }) => {
   }, [data]);
 
   return (
-    <aside className="fixed top-24 right-10">
-      <nav>
+    <aside className="hidden md:block px-4">
+      <nav className="sticky top-32 border border-gray-600 p-4">
         <ol>
           {list.map((item, index) => {
             return (
-              <li key={index}>
+              <li key={index} className="py-1">
                 <a href={`#${item.link}`}>
                   <strong>{item.title}</strong>
                 </a>
@@ -47,7 +47,7 @@ export const Toc = ({ data }: { data: { depth: number; title: string }[] }) => {
                   <ol className="py-2">
                     {item.children.map((item, index) => {
                       return (
-                        <li key={index} className="ml-4 py-1">
+                        <li key={index} className="ml-1.5 py-1">
                           <a
                             href={`#${item.link}`}
                             className="flex gap-2 items-center"

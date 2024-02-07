@@ -2,9 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "@/assets/css/globals.css";
 
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { twMerge } from "tailwind-merge";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { Sidebar } from "@/components/SideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,18 +29,27 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={twMerge(
           "min-h-screen bg-background font-sans antialiased",
-          inter.className
+          inter.className,
         )}
       >
-        <Header />
-        <main className="flex justify-center">
-          <div className="w-full md:w-[572px]">{children}</div>
-        </main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+
+          <main className="grid grid-cols-3 md:grid-cols-4 gap-8 w-full max-w-[1400px] pt-28">
+            <Sidebar />
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

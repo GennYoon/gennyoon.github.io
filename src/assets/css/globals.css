@@ -51,13 +51,22 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply box-border;
   }
 
   #toc {
     position: fixed;
     top: 80px;
     right: 20px;
+  }
+
+  #root {
+    @apply h-full;
+  }
+
+  html,
+  body {
+    @apply h-full;
   }
 
   body {
