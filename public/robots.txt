@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://gennyoon.github.io
+
+# Sitemaps
+Sitemap: https://gennyoon.github.io/sitemap.xml
