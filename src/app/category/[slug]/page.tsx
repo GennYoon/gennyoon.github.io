@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { List } from "@/components/Post";
 
 import { Metadata } from "next";
 import Link from "next/link";
@@ -35,26 +36,7 @@ export default async function CategoryPage({ params }: any) {
         Category:
         <span className="ml-3">{params.slug}</span>
       </h1>
-      <ul>
-        {posts?.map((post) => {
-          if (!post.frontMatter.published) return null;
-
-          return (
-            <Link href={"/post/" + post.slug} passHref key={post.slug}>
-              <div className="p-4 flex justify-between align-middle gap-2 rounded-lg cursor-pointer">
-                <div className="flex flex-col gap-0.5">
-                  <h3 className="text-xl font-bold">{post.frontMatter.title}</h3>
-                  <p className="flex items-center gap-1">
-                    <CalendarDays size={20} className="inline-block" />
-                    <span>{post.frontMatter.date}</span>
-                  </p>
-                  <p className="text-gray-400">{post.frontMatter.description}</p>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
-      </ul>
+      <List posts={posts} />
     </section>
   );
 }

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { twMerge } from "tailwind-merge";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Sidebar } from "@/components/SideBar";
+import HeroSection from "@/components/HeroSection";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,8 +33,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider attribute="class" defaultTheme="dark" storageKey="blog-ui-theme" enableSystem disableTransitionOnChange>
           <Header />
 
-          <main className="grid grid-cols-3 md:grid-cols-4 gap-8 w-full max-w-[1400px] pt-28">
-            <Sidebar />
+          <main className="md:grid-cols-4 gap-8 w-full max-w-[1400px] pt-28">
+            <HeroSection />
             {children}
           </main>
           <Footer />
