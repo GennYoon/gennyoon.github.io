@@ -20,10 +20,7 @@ const createToc = (headings: RegExpMatchArray) => {
 };
 
 const getData = async (title: string) => {
-  const markdownWithMeta = fs.readFileSync(
-    path.join("src", "posts", `${title}.md`),
-    "utf-8",
-  );
+  const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${title}.md`), "utf-8");
 
   const { data: frontMatter, content } = matter(markdownWithMeta);
 
@@ -63,18 +60,14 @@ export default async function PostPage({ params }: any) {
 
   return (
     <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
-      <h1 className="text-3xl font-bold">{frontMatter.title}</h1>
+      <h1 className="text-2xl font-bold mb-4">{frontMatter.title}</h1>
 
       {/* <h1>{frontMatter.title}</h1>
       <p>{frontMatter.description}</p>
       <p>{frontMatter.date}</p>
       <p>{frontMatter.tags.join(", ")}</p> */}
       <div className="col-span-3 md:col-span-2 prose dark:prose-dark mt-4 w-full max-w-none">
-        <MDXRemote
-          source={content}
-          options={options}
-          components={{ pre: Pre, Image }}
-        />
+        <MDXRemote source={content} options={options} components={{ pre: Pre, Image }} />
       </div>
       <Toc data={toc} />
     </section>
@@ -85,10 +78,7 @@ export const generateStaticParams = async () => {
   const files = fs.readdirSync(path.join("src", "posts"));
   const posts = files
     .filter((filename) => {
-      const markdownWithMeta = fs.readFileSync(
-        path.join("src", "posts", `${filename}`),
-        "utf-8",
-      );
+      const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${filename}`), "utf-8");
       const { data } = matter(markdownWithMeta);
       return data.published;
     })
@@ -98,10 +88,7 @@ export const generateStaticParams = async () => {
 };
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
-  const markdownWithMeta = fs.readFileSync(
-    path.join("src", "posts", `${params.slug}.md`),
-    "utf-8",
-  );
+  const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${params.slug}.md`), "utf-8");
 
   const { data: frontMatter } = matter(markdownWithMeta);
   return {

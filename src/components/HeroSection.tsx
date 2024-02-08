@@ -18,7 +18,7 @@ export default function HeroSection() {
   };
 
   return (
-    <motion.section ref={ref} variants={canVariants} initial="initial" animate={isInView ? "animate" : "initial"} className="mb-16">
+    <motion.section ref={ref} variants={canVariants} initial="initial" animate={isInView ? "animate" : "initial"} className="w-full mb-16">
       <div className="flex justify-between px-4">
         <div>
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#036CDA] to-[#15F5FD]">Hello, I&apos;m</h1>

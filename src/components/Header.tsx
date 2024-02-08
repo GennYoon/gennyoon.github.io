@@ -22,7 +22,6 @@ export const Header = () => {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  console.log(open);
   const redirectUrl = (path: string) => {
     setOpen(false);
     router.push(path);

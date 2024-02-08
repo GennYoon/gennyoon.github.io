@@ -32,7 +32,7 @@ export default async function CategoryPage({ params }: any) {
   const { posts } = await getData(params.slug);
   return (
     <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
-      <h1 className="text-3xl font-bold">
+      <h1 className="text-2xl font-bold mb-4">
         Category:
         <span className="ml-3">{params.slug}</span>
       </h1>

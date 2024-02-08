@@ -16,11 +16,7 @@ type BlogListProps = {
 
 const fadeInAnimationVariants = {
   initial: { y: 50, opacity: 0 },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.3 },
-  },
+  animate: { y: 0, opacity: 1 },
 };
 
 function Item({ frontMatter, slug }: BlogItemProps) {
@@ -49,7 +45,7 @@ function Item({ frontMatter, slug }: BlogItemProps) {
 export function List({ posts }: BlogListProps) {
   return (
     <section>
-      <ul className="grid grid-cols-2 gap-8 md:grid-cols-3">
+      <ul className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
         {posts.map((post) => (
           <Item key={post.frontMatter.title} {...post} />
         ))}

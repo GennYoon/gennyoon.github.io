@@ -33,7 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider attribute="class" defaultTheme="dark" storageKey="blog-ui-theme" enableSystem disableTransitionOnChange>
           <Header />
 
-          <main className="md:grid-cols-4 gap-8 w-full max-w-[1400px] pt-28">
+          <main className="flex flex-col items-center w-full max-w-[1400px] ml-auto mr-auto pt-28">
             <HeroSection />
             {children}
           </main>

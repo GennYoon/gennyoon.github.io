@@ -26,8 +26,8 @@ export default async function Home() {
   const { posts } = await getData();
 
   return (
-    <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
-      <h1 className="text-3xl font-bold mb-4">최근 포스트</h1>
+    <section className="col-span-3 w-full px-4">
+      <h1 className="text-2xl font-bold mb-4">최근 포스트</h1>
       <List posts={posts} />
     </section>
   );
