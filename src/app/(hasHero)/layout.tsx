@@ -6,7 +6,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { twMerge } from "tailwind-merge";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Sidebar } from "@/components/SideBar";
 import HeroSection from "@/components/HeroSection";
 
 const inter = Inter({ subsets: ["latin"] });
