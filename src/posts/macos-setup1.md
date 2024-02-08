@@ -2,7 +2,7 @@
 title: "Homebrew 설치 및 설정 & App Store"
 date: "2024-01-01"
 categories: [macos]
-tag: [mac, macos, m1, m2, m3, setup, 맥, 재설치, 초기화, brew, app store]
+tag: [macos, setup, brew]
 order: 1
 published: true
 typora-root-url: ../

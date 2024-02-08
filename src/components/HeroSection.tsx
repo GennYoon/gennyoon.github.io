@@ -13,13 +13,19 @@ export default function HeroSection() {
   const isInView = useInView(ref, { once: true });
 
   const canVariants = {
-    initial: { scale: 0.8, opacity: 0 },
-    animate: { scale: 1, opacity: 1 },
+    initial: { x: -50, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
   };
 
   return (
-    <motion.section ref={ref} variants={canVariants} initial="initial" animate={isInView ? "animate" : "initial"} className="w-full mb-16">
-      <div className="flex justify-between px-4">
+    <motion.section ref={ref} className="w-full mb-12" variants={canVariants} initial="initial" animate={isInView ? "animate" : "initial"}>
+      <div className="flex  gap-8 px-4">
+        <div>
+          <Avatar>
+            <AvatarImage className="w-20 h-20 rounded-full" src="/images/avatar.jpg" alt="avatar" />
+            <AvatarFallback />
+          </Avatar>
+        </div>
         <div>
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#036CDA] to-[#15F5FD]">Hello, I&apos;m</h1>
           <h1 className="text-2xl font-bold mb-8">
@@ -31,20 +37,8 @@ export default function HeroSection() {
             />
           </h1>
         </div>
-        <div>
-          <Avatar>
-            <AvatarImage className="w-20 h-20 rounded-full" src="/images/avatar.jpg" alt="avatar" />
-            <AvatarFallback />
-          </Avatar>
-        </div>
       </div>
       <div className="flex gap-1.5 justify-start px-4">
-        <Button asChild variant="secondary" size="sm" className="rounded-full">
-          <a href="#contract">Contact me here</a>
-        </Button>
-        <Button variant="outline" size="sm" className="rounded-full" disabled>
-          Download CV
-        </Button>
         <Button asChild variant="outline" size="icon" className="rounded-full">
           <a href="https://portfolio.gennyoon.net/" target="_blank">
             <Link2Icon />

@@ -2,7 +2,7 @@
 title: "Git 초기 설정"
 date: "2024-01-01"
 categories: [macos]
-tag: [mac, macos, m1, m2, m3, setup, 맥, 재설치, 초기화, git, github]
+tag: [macos, setup, git]
 order: 4
 published: true
 typora-root-url: ../

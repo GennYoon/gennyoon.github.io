@@ -2,23 +2,7 @@
 title: "Oh My Zsh 설치"
 date: "2024-01-01"
 categories: [macos]
-tag:
-  [
-    mac,
-    macos,
-    m1,
-    m2,
-    m3,
-    setup,
-    맥,
-    재설치,
-    초기화,
-    zsh,
-    oh-my-zsh,
-    font,
-    theme,
-    iterm,
-  ]
+tag: [macos, setup, zsh, oh-my-zsh, iterm2]
 order: 2
 published: true
 typora-root-url: ../

@@ -2,22 +2,7 @@
 title: "MacOS에서 Flutter 개발 환경 구축하기"
 date: "2024-01-01"
 categories: [flutter]
-tag:
-  [
-    mac,
-    macos,
-    m1,
-    m2,
-    m3,
-    flutter,
-    setup,
-    basic,
-    flutter doctor,
-    ios,
-    aos,
-    android-studio,
-    Xcode,
-  ]
+tag: [macos, flutter, setup, basic]
 order: 1
 published: true
 typora-root-url: ../

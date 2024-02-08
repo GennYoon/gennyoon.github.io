@@ -2,7 +2,7 @@
 title: "VSCode 환경설정 및 유용한 Extension"
 date: "2024-01-01"
 categories: [macos]
-tag: [mac, macos, m1, m2, m3, setup, 맥, 재설치, 초기화, vscode, extension]
+tag: [macos, setup]
 order: 5
 published: true
 typora-root-url: ../

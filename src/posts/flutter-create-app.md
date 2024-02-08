@@ -2,7 +2,7 @@
 title: "MacOS에서 Flutter App Flavor를 이용하여 환경 분리하기"
 date: "2024-01-01"
 categories: [flutter]
-tag: [mac, macos, m1, m2, m3, flutter, vscode, flavor]
+tag: [macos, flutter, flavor]
 order: 2
 published: true
 typora-root-url: ../
