@@ -65,8 +65,8 @@ export const Header = () => {
           </CommandDialog>
         </div>
       </header>
-      <Button className="fixed bottom-10 right-10 w-20 h-20 rounded-full z-10" variant="outline" size="icon" onClick={() => setOpen(true)}>
-        <Search size="28" />
+      <Button className="md:hidden fixed bottom-[2.4em] right-[2.4em] w-[4.8em] h-[4.8em] rounded-full z-10" variant="outline" size="icon" onClick={() => setOpen(true)}>
+        <Search size="26" />
       </Button>
     </>
   );

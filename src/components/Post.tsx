@@ -1,9 +1,7 @@
 "use client";
 
 import { Pagination } from "./ui/pagination";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { Tag } from "lucide-react";
 
 type BlogItemProps = {
   frontMatter: any;
@@ -21,8 +19,9 @@ const fadeInAnimationVariants = {
 
 function Item({ frontMatter, slug }: BlogItemProps) {
   if (!frontMatter?.published) return null;
+
   return (
-    <Link href={`/post/${slug}`} passHref>
+    <a href={`/post/${slug}`} target="_self">
       <motion.div className="mb-8" variants={fadeInAnimationVariants} initial="initial" whileInView="animate" viewport={{ once: true }}>
         <span className="bg-[#15F5FD40] dark:text-[#15F5FD] text-sky-600 text-sm font-bold py-1 px-3 rounded-xl">
           {frontMatter.categories.map((cate: string) => cate.toUpperCase()).join(", ")}
@@ -39,7 +38,7 @@ function Item({ frontMatter, slug }: BlogItemProps) {
 
         <p className="text-sm text-gray-800 dark:text-gray-200">{frontMatter.date}</p>
       </motion.div>
-    </Link>
+    </a>
   );
 }
 
