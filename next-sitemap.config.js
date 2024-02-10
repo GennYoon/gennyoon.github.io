@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://gennyoon.github.io",
+  siteUrl: "https://gennyoon.net",
   changefreq: "daily",
   priority: 0.7,
   sitemapSize: 7000,
