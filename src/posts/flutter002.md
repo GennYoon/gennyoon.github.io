@@ -5,7 +5,7 @@ image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images
 categories: [flutter]
 tag: [macos, flutter, flavor]
 order: 2
-published: true
+published: false
 ---
 
 이전 시간에는 macOS에서 Flutter를 설치([MacOS에서 Flutter 개발 환경 구축하기](https://gennyoon.github.io/flutter/flutter-basic/)) 하는 시간을 가졌습니다. 이제 개발을 위해 dev, prod (or stage)의 개발 환경을 flavor를 이용하여 환경에 맞는 환경변수 등을 이용하려합니다.
