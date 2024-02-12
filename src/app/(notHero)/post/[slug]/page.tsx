@@ -87,27 +87,27 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 
   const { data: frontMatter } = matter(markdownWithMeta);
   return {
-    metadataBase: new URL("http://localhost:3000"),
+    metadataBase: new URL("https://gennyoon.net"),
     category: frontMatter.categories[0],
-    title: `${frontMatter.title} | GennYoon 블로그`,
+    title: `${frontMatter.title} | GennYoon Blog`,
     description: frontMatter.description,
     authors: {
-      url: "yoonwonyoul@webchemist.net",
       name: "GennYoon",
+      url: "https://portfolio.gennyoon.net",
     },
     openGraph: {
-      title: `${frontMatter.title} | GennYoon 블로그`,
+      title: `${frontMatter.title} | GennYoon Blog`,
       description: frontMatter.description,
-      url: "http://localhost:3000",
-      siteName: `GennYoon 블로그`,
+      url: "https://gennyoon.net",
+      siteName: `GennYoon Blog`,
       images: [
         {
-          url: "",
+          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
           width: 800,
           height: 600,
         },
         {
-          url: "",
+          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
           width: 1800,
           height: 1600,
           alt: "og:image",
@@ -119,13 +119,12 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     twitter: {
       card: "summary",
       site: "@yoonwonyoul",
-      title: `${frontMatter.title} | GennYoon 블로그`,
+      title: `${frontMatter.title} | GennYoon Blog`,
       description: frontMatter.description,
       creator: "@yoonwonyoul",
       images: [
         {
-          url: "",
-          alt: "",
+          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
         },
       ],
     },

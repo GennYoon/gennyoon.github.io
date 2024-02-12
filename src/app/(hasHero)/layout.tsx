@@ -40,8 +40,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
+    site: "@yoonwonyoul",
     title: "GennYoon Blog",
     description: "GennYoon Blog",
+    creator: "@yoonwonyoul",
     images: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
   },
 };
