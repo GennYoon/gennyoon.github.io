@@ -103,13 +103,8 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
       images: [
         {
           url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
-          width: 800,
-          height: 600,
-        },
-        {
-          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
-          width: 1800,
-          height: 1600,
+          width: 1200,
+          height: 630,
           alt: "og:image",
         },
       ],
