@@ -1,11 +1,11 @@
 ---
 title: "MacOS에서 Flutter 개발 환경 구축하기"
 date: "2024-01-01"
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-flutter.png"
 categories: [flutter]
 tag: [macos, flutter, setup, basic]
 order: 1
 published: true
-typora-root-url: ../
 ---
 
 `Flutter`는 `Cross-Platform` 개발을 위한 프레임워크입니다.

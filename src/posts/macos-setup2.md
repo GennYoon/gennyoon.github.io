@@ -1,11 +1,11 @@
 ---
 title: "Oh My Zsh 설치"
 date: "2024-01-01"
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 categories: [macos]
 tag: [macos, setup, zsh, oh-my-zsh, iterm2]
 order: 2
 published: true
-typora-root-url: ../
 ---
 
 ### Oh My ZSH 설치

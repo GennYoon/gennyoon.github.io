@@ -1,11 +1,11 @@
 ---
 title: "Git 초기 설정"
 date: "2024-01-01"
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 categories: [macos]
 tag: [macos, setup, git]
 order: 4
 published: true
-typora-root-url: ../
 ---
 
 개발자로써 Git을 이용할 때의 정보를 자기자신에게 맞출 수 있어야합니다.

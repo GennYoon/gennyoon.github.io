@@ -1,10 +1,10 @@
 ---
 title: "PARA 방식으로 노트를 정리하자"
 date: "2024-01-01"
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-para.png"
 categories: [docs]
 tag: [docs, para, note]
 published: true
-typora-root-url: ../
 ---
 
 ### PARA의 철학

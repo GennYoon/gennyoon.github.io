@@ -1,11 +1,11 @@
 ---
 title: "NVM으로 Node 버전관리하기"
 date: "2024-01-01"
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 categories: [macos]
 tag: [macos, setup, node, nvm]
 order: 3
 published: true
-typora-root-url: ../
 ---
 
 ### NVM 설명

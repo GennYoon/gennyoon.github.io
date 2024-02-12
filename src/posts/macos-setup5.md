@@ -1,11 +1,11 @@
 ---
 title: "VSCode 환경설정 및 유용한 Extension"
 date: "2024-01-01"
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 categories: [macos]
 tag: [macos, setup]
 order: 5
 published: true
-typora-root-url: ../
 ---
 
 VSCode로 개발하는 분이 아니라면 별도 설정하지 않아도됩니다.
