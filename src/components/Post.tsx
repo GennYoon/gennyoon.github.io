@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Pagination } from "./ui/pagination";
 import { motion } from "framer-motion";
 
@@ -27,7 +28,14 @@ function Item({ frontMatter, slug }: BlogItemProps) {
           {frontMatter.categories.map((cate: string) => cate.toUpperCase()).join(", ")}
         </span>
         <p className="text-xl font-bold py-3 line-clamp-2">{frontMatter.title}</p>
-        <div className="flex justify-center items-center w-full h-[200px] my-3 rounded-xl bg-gray-200 dark:bg-gray-800" />
+        <div className="flex justify-center items-center w-full h-[200px] my-3 rounded-xl bg-gray-200 dark:bg-gray-800">
+          {/* <Image */}
+          {/*   width={600} */}
+          {/*   height={180} */}
+          {/*   src={frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png"} */}
+          {/*   alt={frontMatter.title} */}
+          {/* /> */}
+        </div>
         <div className="flex gap-1.5 py-1 text-gray-800 dark:text-gray-200">
           {frontMatter.tag.map((tag: string) => (
             <span key={tag} className="text-sm bg-gray-200 dark:bg-gray-800 rounded-sm py-0.5 px-2">

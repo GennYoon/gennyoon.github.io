@@ -73,6 +73,17 @@
     @apply bg-background text-foreground;
   }
 
+  html.dark .prose h1,
+  html.dark .prose h2,
+  html.dark .prose h3,
+  html.dark .prose h4,
+  html.dark .prose h5,
+  html.dark .prose h6,
+  html.dark .prose code,
+  html.dark .prose strong {
+    color: white;
+  }
+
   .prose a {
     @apply transition-all;
   }
