@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { twMerge } from "tailwind-merge";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,8 +40,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
+    site: "@yoonwonyoul",
     title: "GennYoon Blog",
     description: "GennYoon Blog",
+    creator: "@yoonwonyoul",
     images: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
   },
 };
@@ -49,6 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={twMerge("min-h-screen bg-background font-sans antialiased", inter.className)}>
+        <GoogleAnalytics gaId="G-51WGHWCJ9G" />
         <ThemeProvider attribute="class" defaultTheme="dark" storageKey="blog-ui-theme" enableSystem disableTransitionOnChange>
           <Header />
           <main className="flex flex-col items-center w-full max-w-[1400px] ml-auto mr-auto pt-28">{children}</main>
