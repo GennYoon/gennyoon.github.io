@@ -86,6 +86,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${params.slug}.md`), "utf-8");
 
   const { data: frontMatter } = matter(markdownWithMeta);
+
   return {
     metadataBase: new URL("https://gennyoon.net"),
     category: frontMatter.categories[0],
@@ -98,7 +99,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     openGraph: {
       title: `${frontMatter.title} | GennYoon Blog`,
       description: frontMatter.description,
-      url: "https://gennyoon.net",
+      url: `https://gennyoon.net/post/${params.slug}`,
       siteName: `GennYoon Blog`,
       images: [
         {
