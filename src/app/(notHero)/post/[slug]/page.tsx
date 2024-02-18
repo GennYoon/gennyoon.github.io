@@ -11,6 +11,7 @@ import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
 import { Pre } from "@/components/Pre";
 import { Toc } from "@/components/Toc";
+import { Code } from "@/components/Code";
 
 const createToc = (headings: RegExpMatchArray) => {
   return headings.map((heading) => {
@@ -31,38 +32,24 @@ const getData = async (title: string) => {
   return { frontMatter, content, toc };
 };
 
-const options: any = {
-  parseFrontmatter: true,
-  mdxOptions: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeCodeTitles,
-      rehypeHighlight,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behaviour: "append",
-          properties: {
-            ariaHidden: true,
-            tabIndex: -1,
-            className: ["anchor"],
-          },
-        },
-      ],
-    ],
-    format: /\.mdx?$/,
-  },
-};
-
 export default async function PostPage({ params }: any) {
   const { frontMatter, content, toc } = await getData(params.slug);
 
   return (
-    <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
+    <section className="col-span-3 w-full max-w-[800px] px-8">
       <h1 className="text-2xl font-bold mb-4">{frontMatter.title}</h1>
+      <Image
+        className="w-full h-full mb-8 rounded-xl"
+        width={500}
+        height={250}
+        src={
+          frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png"
+        }
+        alt={frontMatter.title}
+        priority={true}
+      />
       <div className="col-span-3 md:col-span-2 prose dark:prose-dark mt-4 w-full max-w-none">
-        <MDXRemote source={content} options={options} components={{ pre: Pre, Image }} />
+        <Code code={content} />
       </div>
       <Toc data={toc} />
     </section>
@@ -103,7 +90,9 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
       siteName: `GennYoon Blog`,
       images: [
         {
-          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
+          url:
+            frontMatter.image ??
+            "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
           width: 1200,
           height: 630,
           alt: "og:image",
@@ -120,7 +109,9 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
       creator: "@yoonwonyoul",
       images: [
         {
-          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
+          url:
+            frontMatter.image ??
+            "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
         },
       ],
     },

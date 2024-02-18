@@ -1,92 +1,44 @@
 ---
-title: "MacOS에서 Flutter 개발 환경 구축하기"
+title: "Flutter란?"
 date: "2024-01-01"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-flutter.png"
 categories: [flutter]
-tag: [macos, flutter, setup, basic]
+tag: [macos, flutter]
 order: 1
 published: true
 ---
 
-`Flutter`는 `Cross-Platform` 개발을 위한 프레임워크입니다.
+### Flutter 소개
 
-IOS, AOS를 모두 개발하기 위해서는 XCode의 필요성으로 `Mac`을 이용하여 개발하는 것을 추천드립니다.
+**Flutter의 개념**: Flutter는 Google이 개발한 오픈 소스 UI 소프트웨어 개발 키트입니다. 단일 코드베이스를 사용하여 Android, iOS, Web, Windows, macOS, Linux 등 여러 플랫폼에서 네이티브 앱을 개발할 수 있게 해줍니다.
 
-### Flutter SDK 설치
+**장점**:
 
-[**웹사이트**](https://flutter-ko.dev/get-started/install/macos)를 참조 하여 설치하는 방법도 있지만 포스팅한 글 중이 [**MacOS 재설치 - Homebrew 설치 및 설정 & App Store**](https://gennyoon.github.io/macos/macos-setup1/)을 참조하면 `brew`를 통해서 초기 설정에 설치 할 수 있거나 Flutter 하나만 설치한다면 다음의 명령어를 `터미널`에 붙여 넣고 실행하시면 됩니다.
+- **크로스 플랫폼 개발**: 하나의 코드베이스로 여러 플랫폼의 애플리케이션을 개발할 수 있어 개발 시간과 비용을 절약합니다.
+- **빠른 개발 사이클**: 'Hot Reload' 기능 덕분에 코드 변경사항을 즉시 앱에 반영할 수 있어 개발 프로세스가 빨라집니다.
+- **풍부한 위젯**: 머티리얼 디자인과 쿠퍼티노(스타일) 위젯을 포함하여 다양하고 맞춤화 가능한 UI 구성 요소를 제공합니다.
+- **높은 성능**: Dart 코드는 네이티브 바이너리 코드로 컴파일되어 뛰어난 성능을 제공합니다.
 
-```bash
-brew install --cask flutter
-```
+**사용하는 이유**: Flutter는 뛰어난 성능, 빠른 개발 속도, 그리고 하나의 프로그래밍 언어와 코드베이스로 여러 플랫폼에 앱을 배포할 수 있는 유연성을 제공하기 때문에 많은 개발자들이 선택합니다.
 
-### Android Studio 설치 & Xcode 설치
+### Dart 언어 기초
 
-Flutter로 개발을 한다면 역시 IOS, AOS를 모두 동시 개발이 되어야 한다고 생각합니다. XCode는 App Store에서 설치를 진행하시면 되고, brew를 통하여 Android Studio 역시 설치하면 됩니다.
+**Flutter 앱 개발에 사용되는 Dart 언어의 기본 사항**: Dart는 Flutter를 위해 Google이 선택한 프로그래밍 언어입니다. 객체 지향적이며, 가비지 컬렉션을 제공하고, 빠르게 개발할 수 있는 언어입니다.
 
-```bash
-brew install --cask android-studio
-```
+- **구문**: Java나 JavaScript와 유사한 구문을 가지고 있어 이러한 언어에 익숙한 개발자라면 쉽게 배울 수 있습니다.
+- **특징**: 강타입 언어로, 컴파일 타임에 타입을 체크하여 오류를 줄여줍니다.
+- **함수형 프로그래밍**: Dart는 함수형 프로그래밍 요소를 지원하여 효율적인 코드 작성을 돕습니다.
 
-설치 이후에는 모두 실행하여 중간에 설정 또는 추가 설치가 있습니다. 진행하시고 종료하시면 됩니다.
+### Flutter 설치 및 환경 설정
 
-### Flutter Doctor를 통한 설치 또는 미설치에 대한 정보 확인
+**다양한 운영 체제에 Flutter 설치 및 환경 구성 방법**:
 
-Flutter는 개발을 진행하기 위해 필요한 것의 설치여부를 확인 할 수 있습니다.
-
-```bash
-flutter doctor -v
-```
-
-다음의 명령어를 초반 실행하면 진행된 내용과 미진행 된 내용을 한눈에 알 수 있습니다. 또는 해결방법을 제시해 주기도 합니다.
-
-### Flutter Doctor의 미진행 해결하기
-
-**Unable to get list of installed Simulator runtimes.**
-
-```bash
-xcodebuild -downloadPlatform iOS
-```
-
-현재 구동가능한 시뮬레이터가 존재 하지 않을 때 나옵니다. 저는 IOS 시뮬레이터를 좋아하니 IOS쪽을 설치합니다. (개인적으로 실제 Device에 넣어서 시행해보는 것이 제일 좋다고 생각합니다.)
-
-**cmdline-tools component is missing**
-
-Android Studio에 Command-Line Tools가 설치되어 있지 않을때 나옵니다. `Android studio`를 켜서 `Settings -> Languages & Frameworks -> Android SDK` 창에 들어가 `SDK Tools`바에 들어간 뒤 `Android SDK Command-line Tools`를 체크한 후 apply를 눌러 설치
-
-**Android License 약관 수락**
-
-```bash
-flutter doctor --android-licenses
-```
-
-다음의 명령어로 문서가 보이는데 (A)gree 의 A를 눌러가며 수락하다보면 해결됩니다.
-
-**Apple License 약관 수락**
-
-```bash
-sudo xcodebuild -license accept
-```
-
-**로제타2가 필요하여 설치해야할 때**
-
-```bash
-sudo softwareupdate --install-rosetta --agree-to-license
-```
-
-**Xcode의 경로를 다시 설정해야할 때**
-
-```bash
-sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-
-```
-
-### 마무리
-
-Flutter Doctor의 모든 내용을 클리어 했으면 설치는 모두 마무리 된 것입니다. 이제 나의 Workspace로 이동하여 프로젝트를 생성하면 됩니다.
-
-```bash
-flutter craete --org com.example.app -a kotlin -i swift --platforms-ios,android {app_name}
-```
-
-그냥 옵션 없이 진행해도 상관없지만 생성 후 자기 입맛에 수정하기는 것이 더 힘들 수 있습니다. 다음과 같이 생성며 프로젝트를 진행해보세요.
+1. **Flutter SDK 다운로드**:
+   - Flutter 공식 웹사이트([flutter.dev](https://flutter.dev/))에서 Flutter SDK를 다운로드합니다.
+2. **환경변수 설정**:
+   - 다운로드한 Flutter SDK의 경로를 시스템의 환경변수에 추가하여 Flutter 명령어를 어디서나 사용할 수 있도록 합니다.
+3. **필요한 도구 설치**:
+   - Android 개발을 위해서는 Android Studio와 Android SDK가 필요합니다.
+   - iOS 개발을 위해서는 macOS에 Xcode가 설치되어 있어야 합니다.
+4. **Flutter 도구 실행**:
+   - 터미널이나 명령 프롬프트에서 `flutter doctor` 명령어를 실행하여 필요한 도구가 올바르게 설치되었는지 확인하고, 누락된

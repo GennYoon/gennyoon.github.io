@@ -12,7 +12,7 @@ MAC을 초기화 하거나 새로운 장비를 받아서 재설치 하는 경우
 
 ### Homebrew 설치 (<a href="https://brew.sh/" target="_blank" rel="noreferrer noopener">링크</a>)
 
-```bash
+```bash "
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
@@ -22,8 +22,7 @@ MAC을 초기화 하거나 새로운 장비를 받아서 재설치 하는 경우
 vi Brewfile
 ```
 
-```bash
-# Brewfile
+```bash title="Brewfile "
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 

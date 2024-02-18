@@ -38,8 +38,8 @@ function Item({ frontMatter, slug }: BlogItemProps) {
           />
         </div>
         <div className="flex gap-1.5 py-1 text-gray-800 dark:text-gray-200">
-          {frontMatter.tag.map((tag: string) => (
-            <span key={tag} className="text-sm bg-gray-200 dark:bg-gray-800 rounded-sm py-0.5 px-2">
+          {frontMatter.tag.map((tag: string, index: number) => (
+            <span key={index} className="text-sm bg-gray-200 dark:bg-gray-800 rounded-sm py-0.5 px-2">
               {tag}
             </span>
           ))}
@@ -55,8 +55,8 @@ export function List({ posts }: BlogListProps) {
   return (
     <section>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post) => (
-          <Item key={post.frontMatter.title} {...post} />
+        {posts.map((post, index) => (
+          <Item key={index} {...post} />
         ))}
       </ul>
       <Pagination />

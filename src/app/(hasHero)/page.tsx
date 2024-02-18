@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { differenceInDays } from "date-fns";
 import React from "react";
 import { List } from "@/components/Post";
 
@@ -17,7 +18,7 @@ const getData = async () => {
     };
   });
 
-  const posts = _posts.sort((a, b) => b.frontMatter.date - a.frontMatter.date);
+  const posts = _posts.sort((a, b) => differenceInDays(b.frontMatter.date, a.frontMatter.date));
 
   return { posts };
 };
