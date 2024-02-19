@@ -5,134 +5,122 @@ import matter from "gray-matter";
 import { Metadata } from "next";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
+import { BlogItemProps, List } from "@/components/Post";
+import { differenceInDays } from "date-fns";
 
-const getData = async (category: string) => {
-  const files = fs.readdirSync(path.join("src", "posts"));
+const getData = async (tag: string) => {
+  const listObj = fs
+    .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
+    .reduce<{ [key: string]: string }>((acc, file) => {
+      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      return acc;
+    }, {});
 
-  const _posts = files.reduce<any[]>((acc, filename) => {
-    const markdownWithMeta = fs.readFileSync(path.join("src", "posts", filename));
-    const { data: frontMatter } = matter(markdownWithMeta);
+  const list = Object.entries(listObj).map<BlogItemProps>(([filename, pathname]) => {
+    const file = fs.readFileSync(path.join(pathname));
+    const { data } = matter(file) as any;
+    if (data.tag?.includes(tag)) return { ...data, slug: filename.split(".")[0] };
+  });
 
-    if (frontMatter?.tags?.some((tag: string) => tag.toLocaleUpperCase() === category.toLocaleUpperCase())) {
-      acc.push({
-        frontMatter,
-        slug: filename.split(".")[0],
-      });
-    }
-
-    return acc;
-  }, []);
-
-  const posts = _posts.sort((a, b) => b.frontMatter.date - a.frontMatter.date);
+  const posts = list.sort((a, b) => differenceInDays(b.date, a.date));
 
   return { posts };
 };
 export default async function TagPage({ params }: any) {
   const { posts } = await getData(params.slug);
   return (
-    <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
+    <section className="col-span-3 w-full px-4 md:px-0">
       <h1 className="text-2xl font-bold mb-4">
         Tag:
-        <span className="ml-3">{params.slug}</span>
+        <span className="ml-3 text-red-500">{params.slug.toLocaleUpperCase()}</span>
       </h1>
-      <ul>
-        {posts?.map((post) => {
-          if (!post.frontMatter.published) return null;
-
-          return (
-            <Link href={"/post/" + post.slug} passHref key={post.slug}>
-              <div className="p-4 flex justify-between align-middle gap-2 rounded-lg cursor-pointer">
-                <div className="flex flex-col gap-0.5">
-                  <h3 className="text-xl font-bold">{post.frontMatter.title}</h3>
-                  <p className="flex items-center gap-1">
-                    <CalendarDays size={20} className="inline-block" />
-                    <span>{post.frontMatter.date}</span>
-                  </p>
-                  <p className="text-gray-400">{post.frontMatter.description}</p>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
-      </ul>
+      <List posts={posts} />
     </section>
   );
 }
 
 export const generateStaticParams = async () => {
-  return [{ slug: "macos" }, { slug: "react" }, { slug: "nextjs" }, { slug: "nestjs" }, { slug: "flutter" }, { slug: "terraform" }];
+  const listObj = fs
+    .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
+    .reduce<{ [key: string]: string }>((acc, file) => {
+      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      return acc;
+    }, {});
+
+  const tags = Object.entries(listObj).reduce((acc, [filename, pathname]) => {
+    const file = fs.readFileSync(path.join(pathname));
+    const { data } = matter(file) as any;
+    data.tag?.forEach((tag: string) => acc.add(tag));
+    return acc;
+  }, new Set<string>());
+
+  return Array.from(tags).map((slug) => ({ slug }));
 };
 
-// export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
-//   const markdownWithMeta = fs.readFileSync(
-//     path.join("src", "posts", `${params.slug}.md`),
-//     "utf-8",
-//   );
-//
-//   const { data: frontMatter } = matter(markdownWithMeta);
-//   return {
-//     metadataBase: new URL("http://localhost:3000"),
-//     category: frontMatter.categories[0],
-//     title: `${frontMatter.title} | GennYoon 블로그`,
-//     description: frontMatter.description,
-//     authors: {
-//       url: "yoonwonyoul@webchemist.net",
-//       name: "GennYoon",
-//     },
-//     openGraph: {
-//       title: `${frontMatter.title} | GennYoon 블로그`,
-//       description: frontMatter.description,
-//       url: "http://localhost:3000",
-//       siteName: `GennYoon 블로그`,
-//       images: [
-//         {
-//           url: "",
-//           width: 800,
-//           height: 600,
-//         },
-//         {
-//           url: "",
-//           width: 1800,
-//           height: 1600,
-//           alt: "og:image",
-//         },
-//       ],
-//       locale: "ko_KR",
-//       type: "website",
-//     },
-//     twitter: {
-//       card: "summary",
-//       site: "@yoonwonyoul",
-//       title: `${frontMatter.title} | GennYoon 블로그`,
-//       description: frontMatter.description,
-//       creator: "@yoonwonyoul",
-//       images: [
-//         {
-//           url: "",
-//           alt: "",
-//         },
-//       ],
-//     },
-//     // verification: {
-//     //   google: "",
-//     //   yandex: "",
-//     //   yahoo: "",
-//     //   other: {
-//     //     me: [],
-//     //   },
-//     // },
-//     // robots: {
-//     //   index: false,
-//     //   follow: true,
-//     //   nocache: true,
-//     //   googleBot: {
-//     //     index: true,
-//     //     follow: false,
-//     //     noimageindex: false,
-//     //     "max-video-preview": -1,
-//     //     "max-image-preview": "large",
-//     //     "max-snippet": -1,
-//     //   },
-//     // },
-//   };
-// };
+export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
+  return {
+    metadataBase: new URL("https://gennyoon.net"),
+    category: params.slug,
+    title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+    description: ``,
+    authors: {
+      url: "yoonwonyoul@webchemist.net",
+      name: "GennYoon",
+    },
+    openGraph: {
+      title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      description: ``,
+      url: "https://gennyoon.net",
+      siteName: `GennYoon 블로그`,
+      images: [
+        {
+          url: "",
+          width: 800,
+          height: 600,
+        },
+        {
+          url: "",
+          width: 1800,
+          height: 1600,
+          alt: "og:image",
+        },
+      ],
+      locale: "ko_KR",
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      site: "@yoonwonyoul",
+      title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      description: ``,
+      creator: "@yoonwonyoul",
+      images: [
+        {
+          url: "",
+          alt: "",
+        },
+      ],
+    },
+    // verification: {
+    //   google: "",
+    //   yandex: "",
+    //   yahoo: "",
+    //   other: {
+    //     me: [],
+    //   },
+    // },
+    // robots: {
+    //   index: false,
+    //   follow: true,
+    //   nocache: true,
+    //   googleBot: {
+    //     index: true,
+    //     follow: false,
+    //     noimageindex: false,
+    //     "max-video-preview": -1,
+    //     "max-image-preview": "large",
+    //     "max-snippet": -1,
+    //   },
+    // },
+  };
+};

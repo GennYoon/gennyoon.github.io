@@ -16,6 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gennyoon.net"),
   title: "GennYoon Blog",
   description: "GennYoon Blog",
   keywords: ["React", "NextJS", "Supabase", "GennYoon", "Blog"],

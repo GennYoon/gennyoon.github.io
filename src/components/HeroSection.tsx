@@ -29,12 +29,7 @@ export default function HeroSection() {
         <div>
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#036CDA] to-[#15F5FD]">Hello, I&apos;m</h1>
           <h1 className="text-2xl font-bold mb-8">
-            <TypeAnimation
-              sequence={["GennYoon", 1000, "Frontend Developer", 1000, "Backend Developer", 1000, "DevOps Engineer", 1000, "App Developer", 1000]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
+            <TypeAnimation sequence={["FullStack Developer", 1000, "use NeoVim IDE", 1000, "GennYoon", 1000]} wrapper="span" speed={50} repeat={Infinity} />
           </h1>
         </div>
       </div>

@@ -2,67 +2,47 @@ import fs from "fs-extra";
 import path from "path";
 import matter from "gray-matter";
 import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import rehypeHighlight from "rehype-highlight";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
-import { Pre } from "@/components/Pre";
 import { Toc } from "@/components/Toc";
-
-const createToc = (headings: RegExpMatchArray) => {
-  return headings.map((heading) => {
-    const [depth, title] = heading.split(/(?<= )(.*)/);
-    return { depth: depth.trim().length, title };
-  });
-};
+import { Code } from "@/components/Code";
+import { createToc } from "@/lib/utils";
+import { defaultImage } from "@/constants";
 
 const getData = async (title: string) => {
-  const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${title}.md`), "utf-8");
+  const listObj = fs
+    .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
+    .reduce<{ [key: string]: string }>((acc, file) => {
+      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      return acc;
+    }, {});
 
-  const { data: frontMatter, content } = matter(markdownWithMeta);
+  const markdownWithMeta = fs.readFileSync(path.join(listObj[`${title}.md`]), "utf-8");
+
+  const { data, content } = matter(markdownWithMeta);
 
   const reg = new RegExp(/^(###).*/gm);
   const headings = content.match(reg);
   const toc = createToc(headings!);
 
-  return { frontMatter, content, toc };
-};
-
-const options: any = {
-  parseFrontmatter: true,
-  mdxOptions: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeCodeTitles,
-      rehypeHighlight,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behaviour: "append",
-          properties: {
-            ariaHidden: true,
-            tabIndex: -1,
-            className: ["anchor"],
-          },
-        },
-      ],
-    ],
-    format: /\.mdx?$/,
-  },
+  return { ...data, content, toc };
 };
 
 export default async function PostPage({ params }: any) {
-  const { frontMatter, content, toc } = await getData(params.slug);
+  const { title, image, content, toc } = (await getData(params.slug)) as any;
 
   return (
-    <section className="col-span-3 w-full max-w-[768px] px-4 md:px-0">
-      <h1 className="text-2xl font-bold mb-4">{frontMatter.title}</h1>
+    <section className="col-span-3 w-full max-w-[800px] px-4 md:px-0">
+      <h1 className="text-2xl font-bold mb-4">{title}</h1>
+      <Image
+        className="w-full h-full mb-8 rounded-xl"
+        width={500}
+        height={250}
+        src={image ?? defaultImage}
+        alt={title}
+        priority={true}
+      />
       <div className="col-span-3 md:col-span-2 prose dark:prose-dark mt-4 w-full max-w-none">
-        <MDXRemote source={content} options={options} components={{ pre: Pre, Image }} />
+        <Code code={content} />
       </div>
       <Toc data={toc} />
     </section>
@@ -70,20 +50,25 @@ export default async function PostPage({ params }: any) {
 }
 
 export const generateStaticParams = async () => {
-  const files = fs.readdirSync(path.join("src", "posts"));
-  const posts = files
-    .filter((filename) => {
-      const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${filename}`), "utf-8");
-      const { data } = matter(markdownWithMeta);
-      return data.published;
-    })
-    .map((filename) => ({ slug: filename.split(".")[0] }));
+  const listObj = fs
+    .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
+    .reduce<{ [key: string]: string }>((acc, file) => {
+      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      return acc;
+    }, {});
 
-  return posts;
+  return Object.keys(listObj).map((filename) => ({ slug: filename.split(".")[0] }));
 };
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
-  const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${params.slug}.md`), "utf-8");
+  const listObj = fs
+    .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
+    .reduce<{ [key: string]: string }>((acc, file) => {
+      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      return acc;
+    }, {});
+
+  const markdownWithMeta = fs.readFileSync(path.join(listObj[`${params.slug}.md`]), "utf-8");
 
   const { data: frontMatter } = matter(markdownWithMeta);
 
@@ -103,7 +88,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
       siteName: `GennYoon Blog`,
       images: [
         {
-          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
+          url: frontMatter.image ?? defaultImage,
           width: 1200,
           height: 630,
           alt: "og:image",
@@ -120,7 +105,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
       creator: "@yoonwonyoul",
       images: [
         {
-          url: frontMatter.image ?? "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/meta-image.png",
+          url: frontMatter.image ?? defaultImage,
         },
       ],
     },

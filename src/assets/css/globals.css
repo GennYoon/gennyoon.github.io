@@ -73,40 +73,53 @@
     @apply bg-background text-foreground;
   }
 
-  html.dark .prose h1,
-  html.dark .prose h2,
-  html.dark .prose h3,
-  html.dark .prose h4,
-  html.dark .prose h5,
-  html.dark .prose h6,
-  html.dark .prose code,
-  html.dark .prose strong {
-    color: white;
+  html .prose {
+    font-size: 20px;
   }
+  html.dark .prose {
+    & h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    code,
+    strong,
+    a {
+      color: white;
+    }
 
-  .prose a {
-    @apply transition-all;
+    a {
+      @apply transition-all no-underline;
+    }
+
+    &:has(p, li) {
+      color: #9ca3af;
+    }
   }
+}
 
-  .prose .anchor {
-    @apply invisible absolute no-underline;
+pre {
+  overflow-x: auto;
+  padding: 1rem 0;
+}
 
-    margin-left: -1em;
-    padding-right: 0.5em;
-    cursor: pointer;
-  }
+pre [data-line] {
+  padding: 0 1rem;
+}
 
-  .prose .anchor:after {
-    @apply text-gray-300 dark:text-gray-700;
-    content: "#";
-  }
+span[data-highlighted-line] {
+  @apply bg-[#fff]/10;
+}
 
-  .anchor:hover,
-  .prose *:hover > .anchor {
-    @apply visible;
-  }
+figure[data-rehype-pretty-code-figure] {
+  @apply rounded-lg overflow-hidden;
+}
 
-  .prose .rehype-code-title {
-    @apply rounded-t-lg border border-b-0 px-5 py-3 text-sm font-bold;
-  }
+figcaption[data-rehype-pretty-code-title] {
+  @apply px-4 py-3 m-0 bg-[#181F2A] text-gray-300 text-[20px] font-bold;
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  @apply p-0 py-6 rounded-none pointer-events-none;
 }
