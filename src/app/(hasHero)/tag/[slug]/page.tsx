@@ -29,7 +29,7 @@ const getData = async (tag: string) => {
 export default async function TagPage({ params }: any) {
   const { posts } = await getData(params.slug);
   return (
-    <section className="col-span-3 w-full px-4 md:px-0">
+    <section className="col-span-3 w-full px-4 xl:px-0">
       <h1 className="text-2xl font-bold mb-4">
         Tag:
         <span className="ml-3 text-red-500">{params.slug.toLocaleUpperCase()}</span>

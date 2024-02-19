@@ -2,7 +2,15 @@
 
 import React from "react";
 import { ModeToggle } from "./ModeToggle";
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "./ui/command";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "./ui/command";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -51,11 +59,11 @@ export const Header = () => {
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Categories">
-                <CommandItem onSelect={() => redirectUrl("/category/react")}>React</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/category/nextjs")}>NextJS</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/category/nestjs")}>NestJS</CommandItem>
+                <CommandItem onSelect={() => redirectUrl("/category/mac_setting")}>Mac Setting</CommandItem>
+                <CommandItem onSelect={() => redirectUrl("/category/nextjs")}>Next.js</CommandItem>
                 <CommandItem onSelect={() => redirectUrl("/category/flutter")}>Flutter</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/category/terraform")}>Terraform</CommandItem>
+                <CommandItem onSelect={() => redirectUrl("/category/hooks")}>Hooks</CommandItem>
+                <CommandItem onSelect={() => redirectUrl("/category/para")}>Para</CommandItem>
               </CommandGroup>
               <CommandSeparator />
               <CommandGroup heading="Tags">
@@ -65,7 +73,12 @@ export const Header = () => {
           </CommandDialog>
         </div>
       </header>
-      <Button className="md:hidden fixed bottom-[2.4em] right-[2.4em] w-[4.8em] h-[4.8em] rounded-full z-10" variant="outline" size="icon" onClick={() => setOpen(true)}>
+      <Button
+        className="md:hidden fixed bottom-[2.4em] right-[2.4em] w-[4.8em] h-[4.8em] rounded-full z-10"
+        variant="outline"
+        size="icon"
+        onClick={() => setOpen(true)}
+      >
         <Search size="26" />
       </Button>
     </>
