@@ -53,7 +53,11 @@ export const generateStaticParams = async () => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "category.md") {
+        const markdownWithMeta = fs.readFileSync(path.join(`${file.path}/${file.name}`), "utf-8");
+        const { data } = matter(markdownWithMeta);
+        if (data.published) acc[file.name] = `${file.path}/${file.name}`;
+      }
       return acc;
     }, {});
 
@@ -73,7 +77,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const { data: frontMatter } = matter(markdownWithMeta);
 
   return {
-    metadataBase: new URL("https://gennyoon.net"),
+    metadataBase: new URL(`https://gennyoon.net/post/${params.slug}`),
     category: frontMatter.categories[0],
     title: `${frontMatter.title} | GennYoon Blog`,
     description: frontMatter.description,
@@ -84,11 +88,11 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     openGraph: {
       title: `${frontMatter.title} | GennYoon Blog`,
       description: frontMatter.description,
-      url: `https://gennyoon.net/post/${params.slug}`,
+      url: new URL(`https://gennyoon.net/post/${params.slug}`),
       siteName: `GennYoon Blog`,
       images: [
         {
-          url: frontMatter.image ?? defaultImage,
+          url: frontMatter?.image ?? defaultImage,
           width: 1200,
           height: 630,
           alt: "og:image",
@@ -105,7 +109,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
       creator: "@yoonwonyoul",
       images: [
         {
-          url: frontMatter.image ?? defaultImage,
+          url: frontMatter?.image ?? defaultImage,
         },
       ],
     },

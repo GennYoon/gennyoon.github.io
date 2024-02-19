@@ -43,11 +43,15 @@ export const generateStaticParams = async () => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "category.md") {
+        const markdownWithMeta = fs.readFileSync(path.join(`${file.path}/${file.name}`), "utf-8");
+        const { data } = matter(markdownWithMeta);
+        if (data.published) acc[file.name] = `${file.path}/${file.name}`;
+      }
       return acc;
     }, {});
 
-  const tags = Object.entries(listObj).reduce((acc, [filename, pathname]) => {
+  const tags = Object.values(listObj).reduce((acc, pathname) => {
     const file = fs.readFileSync(path.join(pathname));
     const { data } = matter(file) as any;
     data.tag?.forEach((tag: string) => acc.add(tag));

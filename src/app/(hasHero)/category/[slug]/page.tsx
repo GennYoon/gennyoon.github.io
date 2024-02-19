@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { BlogItemProps, List } from "@/components/Post";
 import { Metadata } from "next";
 import { Code } from "@/components/Code";
+import { defaultImage } from "@/constants";
 
 const getData = async (category: string) => {
   const listObj = fs
@@ -57,29 +58,30 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${params.slug}`, "category.md"), "utf-8");
 
-  const { data: frontMatter } = matter(markdownWithMeta);
+  const { data } = matter(markdownWithMeta);
+
   return {
-    metadataBase: new URL("https://gennyoon.net"),
+    metadataBase: new URL(`https://gennyoon.net/category/${params.slug}`),
     category: params.slug,
-    title: `${frontMatter.title} | GennYoon 블로그`,
-    description: frontMatter.description,
+    title: `${data.title} | GennYoon 블로그`,
+    description: data.description,
     authors: {
       url: "yoonwonyoul@webchemist.net",
       name: "GennYoon",
     },
     openGraph: {
-      title: `${frontMatter.title} | GennYoon 블로그`,
-      description: frontMatter.description,
-      url: "https://gennyoon.net",
-      siteName: `GennYoon 블로그`,
+      title: `${data.title} | GennYoon 블로그`,
+      description: data.description,
+      url: new URL(`https://gennyoon.net/category/${params.slug}`),
+      siteName: `${data.title} | GennYoon 블로그`,
       images: [
         {
-          url: "",
+          url: data.image ?? defaultImage,
           width: 800,
           height: 600,
         },
         {
-          url: "",
+          url: data.image ?? defaultImage,
           width: 1800,
           height: 1600,
           alt: "og:image",
@@ -91,13 +93,12 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     twitter: {
       card: "summary",
       site: "@yoonwonyoul",
-      title: `${frontMatter.title} | GennYoon 블로그`,
-      description: frontMatter.description,
+      title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      description: data.description,
       creator: "@yoonwonyoul",
       images: [
         {
-          url: "",
-          alt: "",
+          url: data.image ?? defaultImage,
         },
       ],
     },

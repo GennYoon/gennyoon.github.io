@@ -33,7 +33,7 @@ export const copyToClipboard = (text: string) => {
 };
 
 export const createToc = (headings: RegExpMatchArray) => {
-  return headings.map((heading) => {
+  return headings?.map((heading) => {
     const [depth, title] = heading.split(/(?<= )(.*)/);
     return { depth: depth.trim().length, title };
   });
