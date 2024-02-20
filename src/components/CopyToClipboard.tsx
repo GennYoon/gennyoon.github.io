@@ -23,17 +23,7 @@ export const CopyToClipboard = ({ children }: ICopyToClipboard) => {
   };
 
   return (
-    <div ref={textInput} className="relative group z-0">
-      <div
-        className={cn(
-          "absolute top-6 right-[74px] px-4 text-[16px] bg-green-700 text-white opacity-0 rounded-sm shadow-sm transition-all",
-          copied ? "opacity-100" : "opacity-0",
-        )}
-      >
-        Copied!!
-        <div className="absolute top-[7px] -right-[12px] h-0 w-0 border-y-8 border-y-transparent border-l-[16px] border-l-green-700"></div>
-      </div>
-
+    <div className="relative group z-0">
       <button
         title="Copy to clipboard"
         data-copied="Copied!"
@@ -44,10 +34,19 @@ export const CopyToClipboard = ({ children }: ICopyToClipboard) => {
         type="button"
         onClick={onCopy}
       >
-        {/* <CopyIcon width={20} height={20} color="#E1E4E8" /> */}
         <Clipboard size={20} color="#E1E4E8" />
+
+        <div
+          className={cn(
+            "absolute right-[60px]  px-4 text-[16px] bg-green-700 text-white opacity-0 rounded-sm shadow-sm transition-all",
+            copied ? "opacity-100" : "opacity-0",
+          )}
+        >
+          Copied!!
+          <div className="absolute top-[7px] -right-[12px] h-0 w-0 border-y-8 border-y-transparent border-l-[16px] border-l-green-700"></div>
+        </div>
       </button>
-      {children}
+      <div ref={textInput}>{children}</div>
     </div>
   );
 };
