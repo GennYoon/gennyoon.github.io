@@ -31,7 +31,7 @@ export default async function PostPage({ params }: any) {
   const { title, image, content, toc } = (await getData(params.slug)) as any;
 
   return (
-    <section className="col-span-3 w-full max-w-[800px] px-4 md:px-0">
+    <section className="col-span-3 w-full max-w-[800px] px-4">
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
       <Image
         className="w-full h-full mb-8 rounded-xl"

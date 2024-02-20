@@ -52,9 +52,12 @@ function Item({ title, date, image, categories, tag, published, slug }: BlogItem
             alt={title}
           />
         </div>
-        <div className="flex gap-1.5 py-1 text-gray-800 dark:text-gray-200">
+        <div className="flex flex-nowrap overflow-x-scroll gap-1.5 py-1 text-gray-800 dark:text-gray-200 no-scrollbar">
           {tag.map((tag: string, index: number) => (
-            <span key={index} className="text-sm bg-gray-200 dark:bg-gray-800 rounded-sm py-0.5 px-2">
+            <span
+              key={index}
+              className="whitespace-nowrap flex-shrink text-sm bg-gray-200 dark:bg-gray-800 rounded-sm py-0.5 px-2"
+            >
               {tag}
             </span>
           ))}
