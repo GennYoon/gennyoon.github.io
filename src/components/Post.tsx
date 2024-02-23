@@ -10,7 +10,7 @@ export type BlogItemProps = {
   date: string;
   image: string;
   slug: string;
-  categories: [];
+  series: [];
   tag: string[];
   order: number;
   published: boolean;
@@ -25,7 +25,7 @@ const fadeInAnimationVariants = {
   animate: { y: 0, opacity: 1 },
 };
 
-function Item({ title, date, image, categories, tag, published, slug }: BlogItemProps) {
+function Item({ title, date, image, series, tag, published, slug }: BlogItemProps) {
   if (!published) return null;
 
   return (
@@ -38,10 +38,10 @@ function Item({ title, date, image, categories, tag, published, slug }: BlogItem
         viewport={{ once: true }}
       >
         <span className="bg-[#15F5FD40] dark:text-[#15F5FD] text-sky-600 text-sm font-bold py-1 px-3 rounded-xl">
-          {categories.map((cate: string) => cate.toUpperCase()).join(", ")}
+          {series.map((cate: string) => cate.toUpperCase()).join(", ")}
         </span>
         <p className="text-xl font-bold py-3 line-clamp-2">{title}</p>
-        <div className="flex justify-center items-center w-full my-3 rounded-xl bg-gray-200 dark:bg-gray-800 overflow-hidden">
+        <div className="flex justify-center items-center my-3 rounded-xl bg-gray-200 dark:bg-gray-800 overflow-hidden">
           <Image
             className="relative object-cover w-full h-full"
             width={1200}

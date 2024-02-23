@@ -1,5 +1,5 @@
 ---
-title: SUPABASE
+title: Tmux
 description: ""
 image: ""
 ---

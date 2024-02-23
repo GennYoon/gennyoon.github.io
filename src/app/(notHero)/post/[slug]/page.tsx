@@ -12,7 +12,7 @@ const getData = async (title: string) => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "series.md") acc[file.name] = `${file.path}/${file.name}`;
       return acc;
     }, {});
 
@@ -53,7 +53,7 @@ export const generateStaticParams = async () => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") {
+      if (file.isFile() && file.name !== "series.md") {
         const markdownWithMeta = fs.readFileSync(path.join(`${file.path}/${file.name}`), "utf-8");
         const { data } = matter(markdownWithMeta);
         if (data.published) acc[file.name] = `${file.path}/${file.name}`;
@@ -68,7 +68,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "series.md") acc[file.name] = `${file.path}/${file.name}`;
       return acc;
     }, {});
 
@@ -78,7 +78,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 
   return {
     metadataBase: new URL(`https://gennyoon.net/post/${params.slug}`),
-    category: frontMatter.categories[0],
+    category: frontMatter.series[0],
     title: `${frontMatter.title} | GennYoon Blog`,
     description: frontMatter.description,
     authors: {

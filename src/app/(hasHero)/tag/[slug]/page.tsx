@@ -12,7 +12,7 @@ const getData = async (tag: string) => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "series.md") acc[file.name] = `${file.path}/${file.name}`;
       return acc;
     }, {});
 
@@ -31,9 +31,11 @@ export default async function TagPage({ params }: any) {
   return (
     <section className="col-span-3 w-full px-4">
       <h1 className="text-2xl font-bold mb-4">
-        Tag:
+        태그:
         <span className="ml-3 text-red-500">{params.slug.toLocaleUpperCase()}</span>
       </h1>
+
+      <h3 className="text-2xl font-bold mb-4"></h3>
       <List posts={posts} />
     </section>
   );
@@ -43,7 +45,7 @@ export const generateStaticParams = async () => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") {
+      if (file.isFile() && file.name !== "series.md") {
         const markdownWithMeta = fs.readFileSync(path.join(`${file.path}/${file.name}`), "utf-8");
         const { data } = matter(markdownWithMeta);
         if (data.published) acc[file.name] = `${file.path}/${file.name}`;
@@ -65,17 +67,17 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   return {
     metadataBase: new URL("https://gennyoon.net"),
     category: params.slug,
-    title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+    title: `태그:  ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
     description: ``,
     authors: {
-      url: "yoonwonyoul@webchemist.net",
       name: "GennYoon",
+      url: "https://portfolio.gennyoon.net",
     },
     openGraph: {
-      title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      title: `태그: ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
       description: ``,
-      url: "https://gennyoon.net",
-      siteName: `GennYoon 블로그`,
+      url: new URL(`https://gennyoon.net/tag/${params.slug}`),
+      siteName: `태그: ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
       images: [
         {
           url: "",
@@ -95,7 +97,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     twitter: {
       card: "summary",
       site: "@yoonwonyoul",
-      title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      title: `태그:  ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
       description: ``,
       creator: "@yoonwonyoul",
       images: [
@@ -105,26 +107,5 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
         },
       ],
     },
-    // verification: {
-    //   google: "",
-    //   yandex: "",
-    //   yahoo: "",
-    //   other: {
-    //     me: [],
-    //   },
-    // },
-    // robots: {
-    //   index: false,
-    //   follow: true,
-    //   nocache: true,
-    //   googleBot: {
-    //     index: true,
-    //     follow: false,
-    //     noimageindex: false,
-    //     "max-video-preview": -1,
-    //     "max-image-preview": "large",
-    //     "max-snippet": -1,
-    //   },
-    // },
   };
 };

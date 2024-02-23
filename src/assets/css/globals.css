@@ -51,16 +51,16 @@
 
 /* Hide Scrollbar .no-scrollbar */
 @layer utilities {
-  @variants responsive {
-    .no-scrollbar::---webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+  /* @variants responsive { */
+  .no-scrollbar::---webkit-scrollbar {
+    display: none;
   }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  /* } */
 }
 
 @layer base {
@@ -131,9 +131,9 @@ figure[data-rehype-pretty-code-figure] {
 }
 
 figcaption[data-rehype-pretty-code-title] {
-  @apply px-4 py-3 m-0 bg-[#181F2A] text-gray-300 text-[20px] font-bold;
+  @apply px-4 py-3 m-0 bg-[#181F2A] text-gray-300 text-[18px] font-bold;
 }
 
 figure[data-rehype-pretty-code-figure] pre {
-  @apply p-0 py-6 rounded-none pointer-events-none;
+  @apply p-0 py-6 rounded-none;
 }

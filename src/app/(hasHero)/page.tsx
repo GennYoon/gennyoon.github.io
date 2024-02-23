@@ -9,7 +9,7 @@ const getData = async () => {
   const listObj = fs
     .readdirSync(path.join("src", "posts"), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "series.md") acc[file.name] = `${file.path}/${file.name}`;
       return acc;
     }, {});
 

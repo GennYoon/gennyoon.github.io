@@ -2,7 +2,7 @@
 title: "MacOS에서 Flutter App Flavor를 이용하여 환경 분리하기"
 date: "2024-01-01"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-flutter.png"
-categories: [flutter]
+series: [flutter]
 tag: [macos, flutter, flavor]
 order: 2
 published: false
@@ -25,10 +25,6 @@ flutter craete --org com.example.app -a kotlin -i swift --platforms-ios,android 
 #### Android
 
 [flavor를 이용한 개발, 운영 환경 설정](https://velog.io/@udong85/Flutter-flavor-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B0%9C%EB%B0%9C-%EC%9A%B4%EC%98%81-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95)
-
-
-
-
 
 `Flutter`는 `Cross-Platform` 개발을 위한 프레임워크입니다.
 

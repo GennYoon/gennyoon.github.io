@@ -6,11 +6,11 @@ import { Metadata } from "next";
 import { Code } from "@/components/Code";
 import { defaultImage } from "@/constants";
 
-const getData = async (category: string) => {
+const getData = async (series: string) => {
   const listObj = fs
-    .readdirSync(path.join("src", "posts", category), { withFileTypes: true, recursive: true })
+    .readdirSync(path.join("src", "posts", series), { withFileTypes: true, recursive: true })
     .reduce<{ [key: string]: string }>((acc, file) => {
-      if (file.isFile() && file.name !== "category.md") acc[file.name] = `${file.path}/${file.name}`;
+      if (file.isFile() && file.name !== "series.md") acc[file.name] = `${file.path}/${file.name}`;
       return acc;
     }, {});
 
@@ -20,27 +20,29 @@ const getData = async (category: string) => {
     return { ...data, slug: filename.split(".")[0] };
   });
 
-  const posts = list.sort((a, b) => b.order - a.order);
+  const posts = list.sort((a, b) => a.order - b.order);
 
-  // Category Content
-  const categoryFile = fs.readFileSync(path.join("src", "posts", category, "category.md"));
-  const { content } = matter(categoryFile) as any;
+  // Secries Content
+  const seriesFile = fs.readFileSync(path.join("src", "posts", series, "series.md"));
+  const { data, content } = matter(seriesFile) as any;
 
-  return { category, content, posts };
+  return { series, title: data.title, content, posts };
 };
 
-export default async function CategoryPage({ params }: any) {
-  const { category, content, posts } = await getData(params.slug);
+export default async function SeriesPage({ params }: any) {
+  const { series, title, content, posts } = await getData(params.slug);
   return (
     <section className="col-span-3 w-full px-4">
-      <h1 className="text-2xl font-bold">
-        Category:
-        <span className="ml-3 text-red-500">{params.slug.toLocaleUpperCase()}</span>
+      <h1 className="text-2xl font-bold mb-4">
+        시리즈:
+        <span className="ml-3 text-red-500">{title}</span>
       </h1>
-      <div className="py-8 prose dark:prose-dark">
+
+      <div className="mb-8 prose dark:prose-dark">
         <Code code={content} />
       </div>
 
+      <h3 className="text-2xl font-bold mb-8">리스트</h3>
       <List posts={posts} />
     </section>
   );
@@ -56,24 +58,24 @@ export const generateStaticParams = async () => {
 };
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
-  const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${params.slug}`, "category.md"), "utf-8");
+  const markdownWithMeta = fs.readFileSync(path.join("src", "posts", `${params.slug}`, "series.md"), "utf-8");
 
   const { data } = matter(markdownWithMeta);
 
   return {
-    metadataBase: new URL(`https://gennyoon.net/category/${params.slug}`),
+    metadataBase: new URL(`https://gennyoon.net/series/${params.slug}`),
     category: params.slug,
-    title: `${data.title} | GennYoon 블로그`,
+    title: `시리즈: ${data.title} | GennYoon 블로그`,
     description: data.description,
     authors: {
-      url: "yoonwonyoul@webchemist.net",
       name: "GennYoon",
+      url: "https://portfolio.gennyoon.net",
     },
     openGraph: {
-      title: `${data.title} | GennYoon 블로그`,
+      title: `시리즈: ${data.title} | GennYoon 블로그`,
       description: data.description,
-      url: new URL(`https://gennyoon.net/category/${params.slug}`),
-      siteName: `${data.title} | GennYoon 블로그`,
+      url: new URL(`https://gennyoon.net/series/${params.slug}`),
+      siteName: `시리즈: ${data.title} | GennYoon 블로그`,
       images: [
         {
           url: data.image ?? defaultImage,
@@ -93,7 +95,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     twitter: {
       card: "summary",
       site: "@yoonwonyoul",
-      title: `${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      title: `시리즈: ${data.title} | GennYoon 블로그`,
       description: data.description,
       creator: "@yoonwonyoul",
       images: [
@@ -102,26 +104,5 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
         },
       ],
     },
-    // verification: {
-    //   google: "",
-    //   yandex: "",
-    //   yahoo: "",
-    //   other: {
-    //     me: [],
-    //   },
-    // },
-    // robots: {
-    //   index: false,
-    //   follow: true,
-    //   nocache: true,
-    //   googleBot: {
-    //     index: true,
-    //     follow: false,
-    //     noimageindex: false,
-    //     "max-video-preview": -1,
-    //     "max-image-preview": "large",
-    //     "max-snippet": -1,
-    //   },
-    // },
   };
 };

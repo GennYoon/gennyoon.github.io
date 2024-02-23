@@ -1,7 +1,7 @@
 ---
 title: "NextJS"
 date: "2024-01-01"
-categories: [nextjs]
+series: [nextjs]
 tag: [react, nextjs]
 published: false
 ---

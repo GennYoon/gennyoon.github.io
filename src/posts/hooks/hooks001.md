@@ -1,7 +1,8 @@
 ---
 title: "useQueryString"
 date: "2024-02-18"
-categories: [hooks]
+image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-react-hooks.png"
+series: [hooks]
 tag: [react, nextjs, hooks]
 order: 1
 published: false

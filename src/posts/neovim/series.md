@@ -1,5 +1,5 @@
 ---
-title: HOOKS
+title: "Neovim"
 description: ""
 image: ""
 ---

@@ -1,5 +1,5 @@
 ---
-title: NEXTJS
+title: Next.js
 description: ""
 image: ""
 ---

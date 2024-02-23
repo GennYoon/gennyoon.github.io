@@ -2,22 +2,21 @@
 title: "NVM으로 Node 버전관리하기"
 date: "2024-01-01"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
-categories: [macos]
+series: [macos]
 tag: [macos, setup, node, nvm]
 order: 3
-published: true
+published: false
 ---
 
 ### NVM 설명
 
 NVM이란, `Node Version Manager`의 약자로 Node버전을 관리해줍니다.
-
 설치는 [[Homebrew Setup & App Store]] 에서 Brewfile을 통해서 진행하시면 됩니다.
 
 ### NVM PATH 설정
 
 ```bash
-# ~/.zshrc
+vi ~/.zshrc
 ...
 
 export NVM_DIR="$HOME/.nvm"
