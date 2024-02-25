@@ -77,8 +77,7 @@ curl -sS https://starship.rs/install.sh | sh
 
 이제 terminal 실행과 동시에 Startship이 실행될 수 있도록 설정합니다. 저희는 zsh를 이용하기 때문에 ~/.zshrc를 생성해서 다음을 추가해줍니다.
 
-```bash title="~/.zshrc"
-...
+```bash
 (echo; echo 'eval "$(starship init zsh)"') >> ~/.zshrc
 ```
 
@@ -86,7 +85,7 @@ curl -sS https://starship.rs/install.sh | sh
 
 이제는 사용성을 위해서 기능 추가를 진행합니다.
 
-```bash title="~/.zshrc"
+```bash
 # Brewfile에 등록도 해주세요.
 brew install eza # 검색
 brew install zsh-syntax-highlighting # 명령어 하이라이트

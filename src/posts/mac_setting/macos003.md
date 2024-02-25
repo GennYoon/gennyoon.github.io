@@ -24,7 +24,7 @@ export NVM_DIR="$HOME/.nvm"
 source ~/.zshrc
 ```
 
-### 최신 lts버전 Node 설치
+### 최신 LTS버전 Node 설치
 
 ```bash
 nvm install --lts
