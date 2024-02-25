@@ -1,25 +1,27 @@
 ---
-title: "Installation Homebrew"
+title: "Homebrew를 이용한 Package 설치 (Install Package using Homebrew)"
 date: "2024-02-01"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]
-tag: [macos, setup, brew]
+tag: [macos, setup, brew, package]
 order: 1
 published: true
 ---
 
-### Installation Homebrew
-
 <a href="https://brew.sh/" target="_blank" rel="noreferrer noopener">Homebrew</a>는 MacOS의 패키지 관리로 개발자들에게 필수적인 도구입니다.
 설치를 진행하여 필요한 패키지, 프로그램을 설치하여 사용해봅니다.
 
-```bash title="commandline install homebrew"
+```bash title="install homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-<br />
+이후에 `brew`명령어를 사용할 수 있게 적용합니다.
 
-### Required installation list
+```bash title="set homebrew path"
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/gennyoon/.zprofile
+```
+
+### 설치할 목록 정하기
 
 이제 자신이 사용하는 내용을 잘 생각해서 설치를 진행하면 됩니다. 저 같은 경우는 Typescript로 개발을 자주 하다보니 해당 개발환경에 필요한 설정을 먼저 하려합니다.
 
@@ -39,37 +41,37 @@ brew search [name]
 ```markdown title="list to install"
 # Brew
 
-- git # 형상관리로 다른 개발자들과 협업을 위해서는 필수 입니다.
-- nvm # `Node Version Manager`로 Node를 버전별로 설치, 변경이 용이합니다.
-- cask # brew install --cask로 프로그램들을 설치 할 수 있게 돕습니다.
+- git
+- nvm
+- cask
 
-# =========== [ Cask ] ================
+# =========== [ Application ] ================
 
-- slack #
-- docker (Optional) #
-- devtoys (Optional) #
-- raycast (Optional) #
-- notion (Optional) #
-- zoom (Optional) #
+- slack
+- docker (Optional)
+- devtoys (Optional)
+- raycast (Optional)
+- notion (Optional)
+- zoom (Optional)
 
 # Choose Browser or Both
 
-- arc # 외국분들이 많이 사용하더라구요 가볍고 좋습니다.
-- google-chrome # 구글 크롬
-- firefox # 파이어폭스
+- google-chrome
+- arc
+- firefox
 
 # Choose IDE
 
-- visual-studio-code # VSCode
-- intellij-idea # 인텔리제이
-- android-studio # 안드로이드 스튜디오 ( AOS 앱개발시에는 필수 입니다. )
+- visual-studio-code
+- intellij-idea
+- android-studio
 ```
 
 이제 위의 내용을 설치를 시작하시면 됩니다. **하지만 여기서 잠깐!!**
 
 <br />
 
-### Managing with Brewfile
+### Brewfile파일 만들기
 
 Brewfile이라고 들어보셨나요? 위의 리스트를 하나씩 설치하고 보관하지 않아도 됩니다.
 
@@ -107,3 +109,9 @@ cask "font-jetbrains-mono-nerd-font"
 ```bash
 brew bundle
 ```
+
+<br />
+
+### 마치며
+
+새로운 장비를 받은 개발자로써 Package를 관리할 수 있게 Homebrew를 이용해봤습니다. 최대한 Homebrew를 통해서 Application과 Package를 관리해봅시다.
