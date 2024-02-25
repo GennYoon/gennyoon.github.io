@@ -18,7 +18,7 @@ published: true
 이후에 `brew`명령어를 사용할 수 있게 적용합니다.
 
 ```bash title="set homebrew path"
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/gennyoon/.zprofile
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
 ```
 
 ### 설치할 목록 정하기
