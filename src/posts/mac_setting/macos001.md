@@ -1,5 +1,5 @@
 ---
-title: "Homebrew를 이용한 Package 설치 (Install Package using Homebrew)"
+title: "Install Package using Homebrew"
 date: "2024-02-01"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]

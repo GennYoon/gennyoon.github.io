@@ -1,5 +1,5 @@
 ---
-title: "Terminal 설정 (Set up Terminal)"
+title: "Setup Terminal"
 date: "2024-02-25"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]
