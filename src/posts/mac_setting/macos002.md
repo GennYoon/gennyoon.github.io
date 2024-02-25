@@ -58,7 +58,7 @@ kitty +kitten theme --reload-in=all Catppuccin-Mocha
 
 ### ZSH 설치
 
-zsh는 Terminal의 활용자들이 활용한 shell입니다. Terminal에서는 활용자들이 활용한 shell을 지원합니다.
+Zsh는 고도로 맞춤화 가능하며 강력한 스크립팅 기능을 제공하는 현대적인 shell로, 개발자의 생산성을 극대화하기 위해 설계되었습니다.
 
 ```bash
 # Brewfile에 등록도 해주세요.
@@ -67,9 +67,7 @@ brew install zsh
 
 ### Starship 설치
 
-startship은 모든 쉘에 대한 최소한의, 매우 빠른 속도, 무한히 사용자 정의 가능한 프롬프트입니다.
-
-https://starship.rs/
+[Starship](https://starship.rs)은 Rust로 작성된, 다양한 셸(Shell)에서 사용할 수 있는 빠르고 최소화된, 맞춤형 가능한 프롬프트입니다.
 
 ```bash title="install Starship"
 curl -sS https://starship.rs/install.sh | sh
