@@ -32,8 +32,8 @@ published: true
 
 ```bash title="Brewfile"
 # Brewfile
-brew "tap homebrew/bundle"
-brew "tap homebrew/cask-fonts"
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
 
 brew "cask"
 brew "git"
