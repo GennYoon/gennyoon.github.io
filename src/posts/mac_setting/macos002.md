@@ -15,7 +15,6 @@ published: true
 `Kitty`는 `Rust`로 만들어진 터미널 애플리케이션으로, 특히 `Vim 사용자`들에게 성능 면에서 인기가 높습니다. `Homebrew`를 통해 쉽게 설치할 수 있습니다:
 
 ```bash title="install kitty
-# Brewfile에 등록도 해주세요.
 brew install --cask kitty
 ```
 
@@ -57,20 +56,19 @@ kitty +kitten theme --reload-in=all Catppuccin-Mocha
 `Zsh`는 사용자의 생산성을 극대화하기 위해 설계된 현대적인 셸입니다. `Homebrew`를 통해 Zsh를 설치할 수 있습니다:
 
 ```bash
-# Brewfile에 등록도 해주세요.
 brew install zsh
 ```
 
 `Starship`은 `Rust`로 작성된 맞춤형 가능한 프롬프트로, 여러 셸에서 사용할 수 있습니다. 설치는 다음과 같이 진행합니다:
 
 ```bash title="install Starship"
-curl -sS https://starship.rs/install.sh | sh
+brew install starship
 ```
 
 설치 후, Zsh를 사용하므로 ~/.zshrc 파일에 Starship을 초기화하는 코드를 추가합니다:
 
 ```bash
-(echo; echo 'eval "$(starship init zsh)"') >> ~/.zshrc
+(echo 'eval "$(starship init zsh)"') >> ~/.zshrc
 ```
 
 ### 기능 확
@@ -78,10 +76,9 @@ curl -sS https://starship.rs/install.sh | sh
 터미널의 사용성을 높이기 위해 몇 가지 도구를 추가로 설치합니다:
 
 ```bash
-# Brewfile에 등록도 해주세요.
-brew install eza # 검색
-brew install zsh-syntax-highlighting # 명령어 하이라이트
-brew install zsh-autosuggestions # 명령어 자동완성
+brew install eza
+brew install zsh-syntax-highlighting
+brew install zsh-autosuggestions
 ```
 
 이후, ~/.zshrc에 필요한 alias와 추가 기능을 설정합니다:

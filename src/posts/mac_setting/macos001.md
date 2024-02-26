@@ -19,7 +19,7 @@ published: true
 설치가 완료되면, Homebrew 명령어를 사용할 수 있도록 환경 변수 설정을 추가합니다:
 
 ```bash title="set homebrew path"
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+(echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
 ```
 
 ### 필요한 패키지 정하기

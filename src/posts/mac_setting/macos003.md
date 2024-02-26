@@ -15,7 +15,6 @@ published: true
 `NVM`은 `Node.js 버전을 쉽게 설치` 하고 관리할 수 있게 해주는 도구입니다. macOS에서 NVM을 설치하는 가장 간단한 방법은 Homebrew를 사용하는 것입니다:
 
 ```bash
-# Brewfile에 등록도 해주세요.
 brew install nvm
 ```
 
