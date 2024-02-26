@@ -1,6 +1,6 @@
 ---
 title: "Setup NVM"
-date: "2024-01-01"
+date: "2024-02-25"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]
 tag: [macos, setup, node, nvm]
@@ -8,16 +8,18 @@ order: 3
 published: true
 ---
 
-NVM이란, `Node Version Manager`의 약자로 Node버전을 관리해줍니다.
-이전 [Homebrew를 이용한 Package 설치](https://gennyoon.net/macos/macos001)를 통한 brew를 통해 설치를 진행해줍니다.
+`Node.js` 개발에 있어 버전 관리는 매우 중요한 측면 중 하나입니다. 다양한 프로젝트에서 요구하는 `Node.js`의 버전이 서로 다를 수 있으며, 이를 효과적으로 관리하지 못하면 개발 환경에서 예상치 못한 문제가 발생할 수 있습니다. 이러한 문제를 해결하기 위해 `Node Version Manager`, 즉 `NVM`을 사용하는 방법에 대해 소개하겠습니다.
+
+### NVM 설치하기
+
+`NVM`은 `Node.js 버전을 쉽게 설치` 하고 관리할 수 있게 해주는 도구입니다. macOS에서 NVM을 설치하는 가장 간단한 방법은 Homebrew를 사용하는 것입니다:
 
 ```bash
 # Brewfile에 등록도 해주세요.
 brew install nvm
 ```
 
-설치가 완료되면 다음의 내용을 .zshrc에 추가해 달라는 글이 있습니다.
-추가를 해주시면 nvm 명령어를 사용하실 수있게 됩니다.
+설치 후, NVM을 사용하기 위해서는 `.zshrc` 파일에 환경 설정을 추가해야 합니다. 이 설정은 NVM을 초기화하고, 필요한 스크립트를 실행하는 데 필요합니다:
 
 ```bash
 export NVM_DIR="$HOME/.nvm"
@@ -29,43 +31,27 @@ source ~/.zshrc
 
 ### 최신 LTS버전 Node 설치
 
+NVM을 통해 `Node.js의 최신 LTS(Long Term Support) 버전`을 설치할 수 있습니다:
+
 ```bash
 nvm install --lts
 ```
 
-만약 필요한 버전이 별도로 있다면 `nvm install {version}`으로 설치해주시면 됩니다. 처음 설치 하였기때문에 자동으로 alias는 default로 설정이 됩니다.
-
-만약 별도로 설정해야 할때는 다음과 같이 해주시면 됩니다.
+특정 버전을 설치하고 싶다면, `nvm install {version}` 명령어를 사용합니다. 설치 후, 기본적으로 사용할 Node.js 버전을 설정할 수 있습니다:
 
 ```bash title="change nvm default alias"
 nvm alias default {version}
 ```
 
-위의 명령어로 현재 기본으로 사용하는 버전을 설정해주세요. default가 현재 설치한 버전으로 고정됩니다.
+### .nvmrc 파일로 프로젝트 별 Node.js 버전 관리
 
-설치가 잘 되었는지 버전을 체크해봅니다.
-
-```bash
-node -v
-V20.11.1
-
-npm -v
-10.2.4
-```
-
-이제 `node`, `npm`의 명령어를 자유롭게 사용할 수 있게 되었습니다.
-
-### .nvmrc 파일로 프로젝트 관리하기
-
-Vim개발자인 저에게는 terminal에서 인식하는 node버전은 중요합니다. 하지만 프로젝트마다 node버전을 매번 바꿔주기도 힘들기 때문에 .nvmrc를 이용해서 자동 변경될 수 있게 합니다.
-
-프로젝트 내부에 .nvmrc 파일을 생성해서 다음과 같이 버전을 넣어줍니다.
+개발 환경에서 각 프로젝트의 Node.js 버전을 자동으로 관리하려면, 프로젝트 루트에 `.nvmrc` 파일을 생성하고 원하는 Node.js 버전을 지정합니다:
 
 ```bash title=".nvmrc"
 v20.11.1
 ```
 
-이제 zsh의 설정파일에 다음을 추가하여 폴더 이동시에 .nvmrc파일을 인식하고 내부에 버전을 체크하여 현재와 다르면 설치 및 변경하게 하고, 아무것도 없는 폴더로 나올때 default node버전이 아닐때는 default 버전으로 변경되게 합니다.
+이후, .zshrc 파일에 스크립트를 추가하여 셸이 프로젝트 디렉토리로 이동할 때마다 `.nvmrc` 파일을 확인하고, 해당 버전으로 자동으로 변경하도록 설정합니다:
 
 ```bash title="~/.zshrc"
 autoload -U add-zsh-hook
@@ -93,4 +79,4 @@ load-nvmrc
 
 ### 마치며
 
-node버전으로 인한 어이없는 오류발생을 경험하지 맙시다.
+`NVM`을 사용함으로써 `Node.js 버전 관리`를 손쉽게 할 수 있게 되었습니다. 이제 개발자는 프로젝트마다 요구하는 Node.js 버전을 쉽게 전환하며, 버전 차이로 인한 문제 없이 개발에 집중할 수 있게 되었습니다. Node.js 개발 환경을 최적화하고 싶은 개발자라면 NVM의 사용을 고려해보세요.

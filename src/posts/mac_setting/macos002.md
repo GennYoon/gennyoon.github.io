@@ -1,6 +1,6 @@
 ---
 title: "Setup Terminal"
-date: "2024-02-25"
+date: "2024-02-24"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]
 tag: [macos, setup, terminal, kitty, zsh, ohmyzsh, catppuccin]
@@ -8,33 +8,29 @@ order: 2
 published: true
 ---
 
-이전 [Homebrew를 이용한 Package 설치](https://gennyoon.net/macos/macos001)를 통해 `brew` 명령어가 가능해지고 `package` 관리가 용이해졌습니다. 이제는 개발자들이 자주 사용하게 되는 `terminal`을 구성해보려합니다.
-
-많은 분들이 `iterm2`를 이용해서 `terminal`을 이용하시는데 `iterm2`의 경우는 다른 곳에서 찾아보시면 많이 나옵니다.
+개발 환경을 개선하는 것은 모든 개발자에게 중요한 과제입니다. 특히 터미널은 많은 시간을 보내는 공간이므로, 이를 개인의 취향과 작업 흐름에 맞춰 최적화하는 것이 중요합니다. 이 글에서는 macOS용 터미널 중 하나인 `Kitty`의 설치 및 구성 방법을 소개하고, `Zsh`와 `Starship` 프롬프트를 사용하여 터미널 환경을 더욱 풍부하고 유용하게 만들어 보겠습니다.
 
 ### Kitty 설치
 
-저는 개발자체를 `Vim`으로 하고 있어서 terminal의 성능에 민감합니다. 여러 `rust로 제작된 terminal`이 많았지만 그중에 `kitty`가 제일 마음에 들어서 그 구성에 대해서 알려드리려고 합니다.
-
-우선 brew를 이용해 kitty를 설치합니다.
+`Kitty`는 `Rust`로 만들어진 터미널 애플리케이션으로, 특히 `Vim 사용자`들에게 성능 면에서 인기가 높습니다. `Homebrew`를 통해 쉽게 설치할 수 있습니다:
 
 ```bash title="install kitty
 # Brewfile에 등록도 해주세요.
 brew install --cask kitty
 ```
 
-설치 후 처음 실행하는 kitty는 mac에서 제공하는 terminal과 차이가 없을 정도로 볼품이 없습니다.
+### Kitty 구성하기
 
-이제 천천히 꾸며보도록 하겠습니다.
+`Kitty`의 설정은 `~/.config/kitty/kitty.conf` 파일을 통해 이루어집니다. 다음은 일부 기본 설정 예시입니다:
 
 ```markdown title="~/.config/kitty/kitty.conf"
-# Window
+# Window 설정
 
 hide_window_decorations titlebar-only
 window_padding_width 25
 window_padding_height 20
 
-# Font
+# 폰트 설정
 
 font_family JetBrainsMonoNL Nerd Font
 font_size 14.5
@@ -44,44 +40,42 @@ bold_italic_font auto
 italic_font auto
 bold_italic_font auto
 
-# Term
+# 터미널 설정
 
 term xterm-256color
 background_opacity .9
 ```
 
-kitty theme 설정하기
+`Kitty`의 테마를 설정하려면, 다음 명령어를 사용하여 적용할 수 있습니다:
 
 ```bash
 kitty +kitten theme --reload-in=all Catppuccin-Mocha
 ```
 
-### ZSH 설치
+### Zsh와 Starship 설치
 
-Zsh는 고도로 맞춤화 가능하며 강력한 스크립팅 기능을 제공하는 현대적인 shell로, 개발자의 생산성을 극대화하기 위해 설계되었습니다.
+`Zsh`는 사용자의 생산성을 극대화하기 위해 설계된 현대적인 셸입니다. `Homebrew`를 통해 Zsh를 설치할 수 있습니다:
 
 ```bash
 # Brewfile에 등록도 해주세요.
 brew install zsh
 ```
 
-### Starship 설치
-
-[Starship](https://starship.rs)은 Rust로 작성된, 다양한 셸(Shell)에서 사용할 수 있는 빠르고 최소화된, 맞춤형 가능한 프롬프트입니다.
+`Starship`은 `Rust`로 작성된 맞춤형 가능한 프롬프트로, 여러 셸에서 사용할 수 있습니다. 설치는 다음과 같이 진행합니다:
 
 ```bash title="install Starship"
 curl -sS https://starship.rs/install.sh | sh
 ```
 
-이제 terminal 실행과 동시에 Startship이 실행될 수 있도록 설정합니다. 저희는 zsh를 이용하기 때문에 ~/.zshrc를 생성해서 다음을 추가해줍니다.
+설치 후, Zsh를 사용하므로 ~/.zshrc 파일에 Starship을 초기화하는 코드를 추가합니다:
 
 ```bash
 (echo; echo 'eval "$(starship init zsh)"') >> ~/.zshrc
 ```
 
-### 기능 추가하기
+### 기능 확
 
-이제는 사용성을 위해서 기능 추가를 진행합니다.
+터미널의 사용성을 높이기 위해 몇 가지 도구를 추가로 설치합니다:
 
 ```bash
 # Brewfile에 등록도 해주세요.
@@ -90,7 +84,7 @@ brew install zsh-syntax-highlighting # 명령어 하이라이트
 brew install zsh-autosuggestions # 명령어 자동완성
 ```
 
-위에 설치한 기능과 추가적인 alias를 작성합니다.
+이후, ~/.zshrc에 필요한 alias와 추가 기능을 설정합니다:
 
 ```bash title="~/.zshrc
 alias ..="cd.."
@@ -106,4 +100,4 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### 마치며
 
-밋밋한 `macOS`의 `terminal`에서 `kitty`를 이용한 멋스러운 `terminal`이 완성되었습니다. 세부적인 기능은들 공식사이트에서 자신의 입맛에 맞춰 진행하시면됩니다.
+Kitty, Zsh, 그리고 Starship을 통해 더욱 향상된 터미널 환경을 구성하는 방법을 알아보았습니다. 이러한 도구들은 개발자의 효율성을 높이고, 터미널 작업을 더욱 즐겁게 만들어줍니다.

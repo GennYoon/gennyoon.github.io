@@ -1,6 +1,6 @@
 ---
 title: "Install Package using Homebrew"
-date: "2024-02-01"
+date: "2024-02-23"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]
 tag: [macos, setup, brew, package]
@@ -8,74 +8,27 @@ order: 1
 published: true
 ---
 
-<a href="https://brew.sh/" target="_blank" rel="noreferrer noopener">Homebrew</a>는 MacOS의 패키지 관리로 개발자들에게 필수적인 도구입니다.
-설치를 진행하여 필요한 패키지, 프로그램을 설치하여 사용해봅니다.
+개발 환경을 구축하는 과정에서, 패키지 관리자의 역할은 매우 중요합니다. macOS 사용자들에게 `Homebrew`는 필수 도구 중 하나로 꼽히며, 이를 통해 `필요한 패키지나 애플리케이션을 손쉽게 설치`하고 관리할 수 있습니다. 이 글에서는 Homebrew의 설치 방법과 함께, 개발에 필요한 환경을 설정하는 방법을 소개하겠습니다.
+
+### Homebrew 설치하기
 
 ```bash title="install homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-이후에 `brew`명령어를 사용할 수 있게 적용합니다.
+설치가 완료되면, Homebrew 명령어를 사용할 수 있도록 환경 변수 설정을 추가합니다:
 
 ```bash title="set homebrew path"
 (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
 ```
 
-### 설치할 목록 정하기
+### 필요한 패키지 정하기
 
-이제 자신이 사용하는 내용을 잘 생각해서 설치를 진행하면 됩니다. 저 같은 경우는 Typescript로 개발을 자주 하다보니 해당 개발환경에 필요한 설정을 먼저 하려합니다.
+개발 환경에 필요한 도구들을 선별하는 것은 개인의 작업 스타일과 필요에 따라 달라집니다. 예를 들어, TypeScript 개발에 필요한 환경을 구축한다면, git, nvm, IDE 등의 기본 도구들이 필요할 것입니다. `Homebrew Formulae` 나 커맨드라인을 통해 필요한 패키지를 검색하고 선택할 수 있습니다.
 
-<br />
+### Brewfile을 이용한 일괄설치
 
-해당 내용은 <a href="https://formulae.brew.sh/" target="_blank" rel="noreferrer noopener">Homebrew Formulae</a>에서 검색 가능하며 설치 명칭을 가져와 설치해주세요.
-또는 Commandline으로도 검색이 가능합니다.
-
-```bash title="search brew"
-brew search [name]
-```
-
-<br />
-
-이제 목록을 만들어 봅니다. ( <small>`주의` 자신이 사용하는 내용으로 추가하시면 됩니다. 그리고 설치하려는 모든 내용이 brew에 존재하진 않습니다</small> )
-
-```markdown title="list to install"
-# Brew
-
-- git
-- nvm
-- cask
-
-# =========== [ Application ] ================
-
-- slack
-- docker (Optional)
-- devtoys (Optional)
-- raycast (Optional)
-- notion (Optional)
-- zoom (Optional)
-
-# Choose Browser or Both
-
-- google-chrome
-- arc
-- firefox
-
-# Choose IDE
-
-- visual-studio-code
-- intellij-idea
-- android-studio
-```
-
-이제 위의 내용을 설치를 시작하시면 됩니다. **하지만 여기서 잠깐!!**
-
-<br />
-
-### Brewfile파일 만들기
-
-Brewfile이라고 들어보셨나요? 위의 리스트를 하나씩 설치하고 보관하지 않아도 됩니다.
-
-우선 아래와 같이 파일을 작성합니다.
+설치할 패키지 목록을 `Brewfile`에 정리하면, 이후 환경 설정이나 새로운 장비로의 이전 시 시간을 절약할 수 있습니다. Brewfile의 예시는 다음과 같습니다:
 
 ```bash title="Brewfile"
 # Brewfile
@@ -102,16 +55,8 @@ cask "android-studio"
 cask "font-jetbrains-mono-nerd-font"
 ```
 
-다시 한번 이야기 드리지만 설치 목록은 여러분들이 작성하시는 것입니다. 😉
-
-이제 다음의 명령어를 입력하면 한번에 설치가 시작됩니다.
-
-```bash
-brew bundle
-```
-
-<br />
+이렇게 정리된 `Brewfile`을 사용하면, `brew bundle` 명령어로 모든 필요한 패키지와 애플리케이션을 한 번에 설치할 수 있습니다.
 
 ### 마치며
 
-새로운 장비를 받은 개발자로써 Package를 관리할 수 있게 Homebrew를 이용해봤습니다. 최대한 Homebrew를 통해서 Application과 Package를 관리해봅시다.
+`Homebrew`를 이용하면 macOS에서의 패키지 관리가 훨씬 간단해집니다. 필요한 도구들을 `Brewfile`에 정리해두면, 언제든지 환경을 재구축할 수 있어 효율적입니다. 이 방법을 통해 개발 환경을 빠르고 쉽게 설정해보세요.
