@@ -48,7 +48,7 @@ background_opacity .9
 `Kitty`의 테마를 설정하려면, 다음 명령어를 사용하여 적용할 수 있습니다:
 
 ```bash
-kitty +kitten theme --reload-in=all Catppuccin-Mocha
+kitty +kitten themes --reload-in=all Tokyo Night
 ```
 
 ### Zsh와 Starship 설치
@@ -71,7 +71,7 @@ brew install starship
 (echo 'eval "$(starship init zsh)"') >> ~/.zshrc
 ```
 
-### 기능 확
+### 기능 확장
 
 터미널의 사용성을 높이기 위해 몇 가지 도구를 추가로 설치합니다:
 
