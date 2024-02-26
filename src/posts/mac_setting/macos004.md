@@ -1,5 +1,5 @@
 ---
-title: "Git config & Github SSH setting"
+title: "Setup Git"
 date: "2024-02-26"
 image: "https://udakkdpxfzwyalqyjmiz.supabase.co/storage/v1/object/public/images/blog-macos.png"
 series: [macos]
