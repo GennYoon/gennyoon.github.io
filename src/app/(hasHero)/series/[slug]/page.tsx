@@ -65,17 +65,17 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   return {
     metadataBase: new URL(`https://gennyoon.net/series/${params.slug}`),
     category: params.slug,
-    title: `시리즈: ${data.title} | GennYoon 블로그`,
+    title: `시리즈: ${data.title} | GennYoon Blog`,
     description: data.description,
     authors: {
       name: "GennYoon",
       url: "https://portfolio.gennyoon.net",
     },
     openGraph: {
-      title: `시리즈: ${data.title} | GennYoon 블로그`,
+      title: `시리즈: ${data.title} | GennYoon Blog`,
       description: data.description,
       url: new URL(`https://gennyoon.net/series/${params.slug}`),
-      siteName: `시리즈: ${data.title} | GennYoon 블로그`,
+      siteName: `시리즈: ${data.title} | GennYoon Blog`,
       images: [
         {
           url: data.image ?? defaultImage,
@@ -95,7 +95,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     twitter: {
       card: "summary",
       site: "@yoonwonyoul",
-      title: `시리즈: ${data.title} | GennYoon 블로그`,
+      title: `시리즈: ${data.title} | GennYoon Blog`,
       description: data.description,
       creator: "@yoonwonyoul",
       images: [

@@ -67,17 +67,17 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   return {
     metadataBase: new URL("https://gennyoon.net"),
     category: params.slug,
-    title: `태그:  ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+    title: `태그:  ${params.slug.toLocaleUpperCase()} | GennYoon Blog`,
     description: ``,
     authors: {
       name: "GennYoon",
       url: "https://portfolio.gennyoon.net",
     },
     openGraph: {
-      title: `태그: ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      title: `태그: ${params.slug.toLocaleUpperCase()} | GennYoon Blog`,
       description: ``,
       url: new URL(`https://gennyoon.net/tag/${params.slug}`),
-      siteName: `태그: ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      siteName: `태그: ${params.slug.toLocaleUpperCase()} | GennYoon Blog`,
       images: [
         {
           url: "",
@@ -97,7 +97,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
     twitter: {
       card: "summary",
       site: "@yoonwonyoul",
-      title: `태그:  ${params.slug.toLocaleUpperCase()} | GennYoon 블로그`,
+      title: `태그:  ${params.slug.toLocaleUpperCase()} | GennYoon Blog`,
       description: ``,
       creator: "@yoonwonyoul",
       images: [
