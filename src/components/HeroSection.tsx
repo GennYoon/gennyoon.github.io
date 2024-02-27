@@ -18,7 +18,13 @@ export default function HeroSection() {
   };
 
   return (
-    <motion.section ref={ref} className="w-full mb-12" variants={canVariants} initial="initial" animate={isInView ? "animate" : "initial"}>
+    <motion.section
+      ref={ref}
+      className="w-full mb-12"
+      variants={canVariants}
+      initial="initial"
+      animate={isInView ? "animate" : "initial"}
+    >
       <div className="flex  gap-8 px-4">
         <div>
           <Avatar>
@@ -27,25 +33,32 @@ export default function HeroSection() {
           </Avatar>
         </div>
         <div>
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#036CDA] to-[#15F5FD]">Hello, I&apos;m</h1>
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#036CDA] to-[#15F5FD]">
+            Hello, I&apos;m
+          </h1>
           <h1 className="text-2xl font-bold mb-8">
-            <TypeAnimation sequence={["FullStack Developer", 1000, "use NeoVim IDE", 1000, "GennYoon", 1000]} wrapper="span" speed={50} repeat={Infinity} />
+            <TypeAnimation
+              sequence={["FullStack Developer", 1000, "use NeoVim IDE", 1000, "GennYoon", 1000]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+            />
           </h1>
         </div>
       </div>
       <div className="flex gap-1.5 justify-start px-4">
         <Button asChild variant="outline" size="icon" className="rounded-full">
-          <a href="https://portfolio.gennyoon.net/" target="_blank">
+          <a aria-label="portfolio" href="https://portfolio.gennyoon.net/" target="_blank">
             <Link2Icon />
           </a>
         </Button>
         <Button asChild variant="outline" size="icon" className="rounded-full">
-          <a href="https://www.linkedin.com/in/gennyoon/" target="_blank">
+          <a aria-label="linkedin" href="https://www.linkedin.com/in/gennyoon/" target="_blank">
             <LinkedInLogoIcon />
           </a>
         </Button>
         <Button asChild variant="outline" size="icon" className="rounded-full">
-          <a href="https://github.com/gennyoon" target="_blank">
+          <a aria-label="github" href="https://github.com/gennyoon" target="_blank">
             <GitHubLogoIcon />
           </a>
         </Button>
