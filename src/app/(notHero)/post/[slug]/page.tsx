@@ -44,7 +44,7 @@ export default async function PostPage({ params }: any) {
       <div className="col-span-3 md:col-span-2 prose dark:prose-dark mt-4 w-full max-w-none">
         <Code code={content} />
       </div>
-      <Toc data={toc} />
+      {/* <Toc data={toc} /> */}
     </section>
   );
 }

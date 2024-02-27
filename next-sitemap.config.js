@@ -2,8 +2,17 @@
 module.exports = {
   siteUrl: "https://gennyoon.net",
   changefreq: "daily",
-  priority: 0.7,
+  priority: 1,
   sitemapSize: 7000,
   generateRobotsTxt: true,
   exclude: [],
+  rebotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [],
+      },
+    ],
+  },
 };

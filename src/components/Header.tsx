@@ -59,15 +59,14 @@ export const Header = () => {
             <CommandList className="pt-4">
               <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup heading="Series">
-                <CommandItem onSelect={() => redirectUrl("/series/alacritty")}>Alacritty</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/series/flutter")}>Flutter</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/series/hooks")}>Hooks</CommandItem>
+                {/* <CommandItem onSelect={() => redirectUrl("/series/flutter")}>Flutter</CommandItem> */}
+                {/* <CommandItem onSelect={() => redirectUrl("/series/hooks")}>Hooks</CommandItem> */}
                 <CommandItem onSelect={() => redirectUrl("/series/mac_setting")}>Mac Setting</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/series/neovim")}>Neovim</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/series/nextjs")}>Next.js</CommandItem>
+                {/* <CommandItem onSelect={() => redirectUrl("/series/neovim")}>Neovim</CommandItem> */}
+                {/* <CommandItem onSelect={() => redirectUrl("/series/nextjs")}>Next.js</CommandItem> */}
                 <CommandItem onSelect={() => redirectUrl("/series/para")}>Para</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/series/supabase")}>Supabase</CommandItem>
-                <CommandItem onSelect={() => redirectUrl("/series/tmux")}>Tmux</CommandItem>
+                {/* <CommandItem onSelect={() => redirectUrl("/series/supabase")}>Supabase</CommandItem> */}
+                {/* <CommandItem onSelect={() => redirectUrl("/series/tmux")}>Tmux</CommandItem> */}
               </CommandGroup>
               {/* <CommandSeparator /> */}
               {/* <CommandGroup heading="Tags"> */}
@@ -78,6 +77,7 @@ export const Header = () => {
         </div>
       </header>
       <Button
+        aria-label="search series"
         className="md:hidden fixed bottom-[2.4em] right-[2.4em] w-[4.8em] h-[4.8em] rounded-full z-10"
         variant="outline"
         size="icon"
